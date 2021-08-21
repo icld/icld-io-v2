@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  justify-content: center;
+  max-width: calc(100vw-50px);
+
+  height: calc(100vh - 64px);
+  background-color: white;
+}
+
+.main > section {
+  padding: 32px;
+}
