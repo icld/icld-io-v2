@@ -34,7 +34,7 @@ export default function Home({ posts }) {
     <div>
       {/* <Toolbar /> */}
       <div>
-        <h1>Here's a blog</h1>
+        <h1>Here is a blog</h1>
 
         <h3>Recent Posts:</h3>
         {mappedPosts.length ? (
@@ -45,7 +45,11 @@ export default function Home({ posts }) {
               onClick={() => router.push(`/blog/${p.slug.current}`)}
             >
               <h3>{p.title}</h3>
-              <img className={styles.mainImage} src={p.mainImage} />
+              <img
+                alt='main image'
+                className={styles.mainImage}
+                src={p.mainImage}
+              />
             </div>
           ))
         ) : (

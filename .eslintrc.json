@@ -2,6 +2,7 @@
   "extends": ["next/core-web-vitals", "eslint-config-prettier"],
   "rules": {
     "import/no-anonymous-default-export": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "@next/next/no-img-element": "off"
   }
 }
