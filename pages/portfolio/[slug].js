@@ -7,17 +7,40 @@ import BlockContent from '@sanity/block-content-to-react';
 import styles from '../../styles/PortfolioPost.module.css';
 import router from 'next/router';
 
-export default function PortfolioPost({ title, body, image, url, technology }) {
+export default function PortfolioPost({
+  title,
+  body,
+  image,
+  url,
+  technology,
+  images,
+}) {
+  //   console.log(imagesUrls);
+  //   console.log(imageUrl);
+
   const [imageUrl, setImageUrl] = useState('');
+  const [mappedImages, setMappedImages] = useState([]);
+  const [img, setImg] = useState(images);
 
   useEffect(() => {
     const imageBuilder = imageUrlBuilder({
       projectId: 'jwuejy9w',
       dataset: 'production',
     });
+    setMappedImages(() =>
+      img.map((image, i) => {
+        return {
+          image: imageBuilder.image(image),
+        };
+      })
+    );
 
     setImageUrl(imageBuilder.image(image));
-  }, [image]);
+  }, [image, images, img]);
+
+  useEffect(() => {
+    console.log(mappedImages);
+  });
 
   return (
     <section>
@@ -29,9 +52,20 @@ export default function PortfolioPost({ title, body, image, url, technology }) {
             <img alt='blog' className={styles.mainImage} src={imageUrl} />
           </a>
         )}
-        <div>{technology} </div>
+        <div>
+          <ul>
+            {technology.map((t, i) => (
+              <li key={i}>{t}</li>
+            ))}
+          </ul>
+        </div>
         <div className={styles.body}>
           <BlockContent blocks={body}></BlockContent>{' '}
+        </div>
+        <div>
+          {mappedImages.map((image, i) => (
+            <img alt='portfolio' src={image.image} key={i} />
+          ))}
         </div>
       </div>
     </section>
@@ -62,6 +96,17 @@ export const getServerSideProps = async (pageContext) => {
   if (!post) {
     return {
       notFound: true,
+    };
+  } else if (post.images.length) {
+    return {
+      props: {
+        body: post.body,
+        title: post.title,
+        image: post.mainImage,
+        url: post.url,
+        technology: post.technology,
+        images: post.images,
+      },
     };
   } else {
     return {
