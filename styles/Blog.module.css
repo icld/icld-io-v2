@@ -1,15 +1,11 @@
-.main {
-  z-index: 999;
-}
-
 .main h1,
 .main h3 {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .feed {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
 }
 
@@ -18,9 +14,8 @@
   width: 500px;
   height: 316px;
   cursor: pointer;
-  text-align: center;
+  /* text-align: center; */
   max-width: calc(100vw-50px);
-  z-index: 999;
 }
 
 .mainImage {
@@ -29,7 +24,6 @@
   border-radius: 5px;
   max-width: calc(100vw-50px);
   box-shadow: 0px 0px 2px black;
-  z-index: 999;
 }
 
 .post:hover .mainImage {

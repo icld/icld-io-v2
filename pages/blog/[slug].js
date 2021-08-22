@@ -1,10 +1,11 @@
+import Layout from '../../components/Layout';
+import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import styles from '../../styles/Post.module.css';
 
-// import Toolbar from '../../components/toolbar';
-export const Post = ({ title, body, image }) => {
+export default function Post({ title, body, image }) {
   const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
@@ -17,8 +18,7 @@ export const Post = ({ title, body, image }) => {
   }, [image]);
 
   return (
-    <div>
-      {/* <Toolbar /> */}
+    <section>
       <div className={styles.main}>
         <h1>{title}</h1>
         {imageUrl && (
@@ -28,9 +28,9 @@ export const Post = ({ title, body, image }) => {
           <BlockContent blocks={body}></BlockContent>{' '}
         </div>
       </div>
-    </div>
+    </section>
   );
-};
+}
 
 export const getServerSideProps = async (pageContext) => {
   const pageSlug = pageContext.query.slug;
@@ -69,4 +69,11 @@ export const getServerSideProps = async (pageContext) => {
   }
 };
 
-export default Post;
+Post.getLayout = function getLayout(page) {
+  return (
+    <Layout title='icld.io' description='icld.io'>
+      <Header />
+      {page}
+    </Layout>
+  );
+};

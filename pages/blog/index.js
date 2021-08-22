@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import Head from 'next/head';
+import Layout from '../../components/Layout';
+import Header from '../../components/Header';
 import styles from '../../styles/Blog.module.css';
-// import Toolbar from '../../components/toolbar';
 import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/router';
 
-export default function Home({ posts }) {
+export default function Blog({ posts }) {
   const [mappedPosts, setMappedPosts] = useState([]);
   const router = useRouter();
   useEffect(() => {
@@ -31,32 +31,29 @@ export default function Home({ posts }) {
 
   console.log(posts);
   return (
-    <div>
-      {/* <Toolbar /> */}
-      <div>
-        <h1>Here is a blog</h1>
+    <section>
+      <h1>Here is a blog</h1>
 
-        <h3>Recent Posts:</h3>
-        {mappedPosts.length ? (
-          mappedPosts.map((p, index) => (
-            <div
-              key={index}
-              className={styles.post}
-              onClick={() => router.push(`/blog/${p.slug.current}`)}
-            >
-              <h3>{p.title}</h3>
-              <img
-                alt='main image'
-                className={styles.mainImage}
-                src={p.mainImage}
-              />
-            </div>
-          ))
-        ) : (
-          <>No Posts Yet</>
-        )}
-      </div>
-    </div>
+      <h3>Recent Posts:</h3>
+      {mappedPosts.length ? (
+        mappedPosts.map((p, index) => (
+          <div
+            key={index}
+            className={styles.post}
+            onClick={() => router.push(`/blog/${p.slug.current}`)}
+          >
+            <h3>{p.title}</h3>
+            <img
+              alt='main image'
+              className={styles.mainImage}
+              src={p.mainImage}
+            />
+          </div>
+        ))
+      ) : (
+        <>No Posts Yet</>
+      )}
+    </section>
   );
 }
 
@@ -78,4 +75,13 @@ export const getServerSideProps = async (pageContext) => {
       },
     };
   }
+};
+
+Blog.getLayout = function getLayout(page) {
+  return (
+    <Layout title='icld.io' description='icld.io'>
+      <Header />
+      {page}
+    </Layout>
+  );
 };

@@ -1,10 +1,7 @@
 .main {
-  /* overflow: scroll; */
   margin: auto;
   width: 750px;
   max-width: calc(100vw-50px);
-  /* color: white; */
-  z-index: 999;
 }
 
 .mainImage {
