@@ -1,11 +1,13 @@
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
+import Link from 'next/router';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
-import styles from '../../styles/Post.module.css';
+import styles from '../../styles/PortfolioPost.module.css';
+import router from 'next/router';
 
-export default function Post({ title, body, image }) {
+export default function PortfolioPost({ title, body, image, url, technology }) {
   const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
@@ -21,9 +23,13 @@ export default function Post({ title, body, image }) {
     <section>
       <div className={styles.main}>
         <h1>{title}</h1>
+
         {imageUrl && (
-          <img alt='blog' className={styles.mainImage} src={imageUrl} />
+          <a href={url} target='_blank' rel='noreferrer'>
+            <img alt='blog' className={styles.mainImage} src={imageUrl} />
+          </a>
         )}
+        <div>{technology} </div>
         <div className={styles.body}>
           <BlockContent blocks={body}></BlockContent>{' '}
         </div>
@@ -43,7 +49,7 @@ export const getServerSideProps = async (pageContext) => {
   }
 
   const query = encodeURIComponent(
-    `*[ _type == "post" && slug.current == "${pageSlug}" ]`
+    `*[ _type == "portfolio" && slug.current == "${pageSlug}" ]`
   );
 
   const url = `https://jwuejy9w.api.sanity.io/v1/data/query/production?query=${query}`;
@@ -51,7 +57,7 @@ export const getServerSideProps = async (pageContext) => {
   const result = await fetch(url).then((res) => res.json());
   const post = result.result[0];
 
-  //   console.log(post);
+  console.log(post);
 
   if (!post) {
     return {
@@ -63,13 +69,14 @@ export const getServerSideProps = async (pageContext) => {
         body: post.body,
         title: post.title,
         image: post.mainImage,
-        author: post.author,
+        url: post.url,
+        technology: post.technology,
       },
     };
   }
 };
 
-Post.getLayout = function getLayout(page) {
+PortfolioPost.getLayout = function getLayout(page) {
   return (
     <Layout title='icld.io' description='icld.io'>
       <Header />

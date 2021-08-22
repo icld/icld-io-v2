@@ -32,27 +32,29 @@ export default function Blog({ posts }) {
   console.log(posts);
   return (
     <section>
-      <h1>Here is a blog</h1>
+      <div className={styles.main}>
+        <h1>Here is a blog</h1>
 
-      <h3>Recent Posts:</h3>
-      {mappedPosts.length ? (
-        mappedPosts.map((p, index) => (
-          <div
-            key={index}
-            className={styles.post}
-            onClick={() => router.push(`/blog/${p.slug.current}`)}
-          >
-            <h3>{p.title}</h3>
-            <img
-              alt='main image'
-              className={styles.mainImage}
-              src={p.mainImage}
-            />
-          </div>
-        ))
-      ) : (
-        <>No Posts Yet</>
-      )}
+        <h3>Recent Posts:</h3>
+        {mappedPosts.length ? (
+          mappedPosts.map((p, index) => (
+            <div
+              key={index}
+              className={styles.post}
+              onClick={() => router.push(`/blog/${p.slug.current}`)}
+            >
+              <h3>{p.title}</h3>
+              <img
+                alt='main image'
+                className={styles.mainImage}
+                src={p.mainImage}
+              />
+            </div>
+          ))
+        ) : (
+          <>No Posts Yet</>
+        )}
+      </div>
     </section>
   );
 }
