@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import styles from '../../styles/Post.module.css';
+import Footer from '../../components/Footer';
 
 export default function Post({ title, body, image }) {
   const [imageUrl, setImageUrl] = useState('');
@@ -74,6 +75,7 @@ Post.getLayout = function getLayout(page) {
     <Layout title='icld.io' description='icld.io'>
       <Header />
       {page}
+      <Footer />
     </Layout>
   );
 };

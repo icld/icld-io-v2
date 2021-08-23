@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import styles from '../../styles/Blog.module.css';
 import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/router';
+import Footer from '../../components/Footer';
 
 export default function Blog({ posts }) {
   const [mappedPosts, setMappedPosts] = useState([]);
@@ -84,6 +85,7 @@ Blog.getLayout = function getLayout(page) {
     <Layout title='icld.io' description='icld.io'>
       <Header />
       {page}
+      <Footer />
     </Layout>
   );
 };

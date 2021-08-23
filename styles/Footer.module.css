@@ -1,0 +1,24 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socialsMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.socialsMain > * {
+  margin-left: 20px;
+  color: black;
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
+
+.socialsMain > *:hover {
+  display: flex;
+  color: tomato;
+}

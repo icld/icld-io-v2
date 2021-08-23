@@ -6,6 +6,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import styles from '../../styles/PortfolioPost.module.css';
 import router from 'next/router';
+import Footer from '../../components/Footer';
 
 export default function PortfolioPost({
   title,
@@ -97,7 +98,7 @@ export const getServerSideProps = async (pageContext) => {
     return {
       notFound: true,
     };
-  } else if (post.images.length) {
+  } else if (post.images) {
     return {
       props: {
         body: post.body,
@@ -116,6 +117,7 @@ export const getServerSideProps = async (pageContext) => {
         image: post.mainImage,
         url: post.url,
         technology: post.technology,
+        images: [],
       },
     };
   }
@@ -126,6 +128,7 @@ PortfolioPost.getLayout = function getLayout(page) {
     <Layout title='icld.io' description='icld.io'>
       <Header />
       {page}
+      <Footer />
     </Layout>
   );
 };

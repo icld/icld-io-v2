@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import Header from '../components/Header';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ Home.getLayout = function getLayout(page) {
     <Layout title='icld.io' description='icld.io'>
       <Header />
       {page}
+      <Footer />
     </Layout>
   );
 };

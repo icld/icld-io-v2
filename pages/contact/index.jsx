@@ -1,6 +1,7 @@
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import Form from '../../components/Form';
+import Footer from '../../components/Footer';
 
 export default function Contact() {
   return (
@@ -16,6 +17,7 @@ Contact.getLayout = function getLayout(page) {
     <Layout title='icld.io' description='icld.io'>
       <Header />
       {page}
+      <Footer />
     </Layout>
   );
 };
