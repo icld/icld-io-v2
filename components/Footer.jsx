@@ -7,11 +7,13 @@ const Footer = () => {
   return (
     <section>
       <footer className={styles.footer}>
-        <div>©2021 Ian Cameron Lyles</div>
-        <div className={styles.socialsMain}>
-          <FiInstagram />
-          <FiGithub />
-          <FiTwitter />
+        <div className={styles.main}>
+          <div>©2021 Ian Cameron Lyles</div>
+          <div className={styles.socialsMain}>
+            <FiInstagram />
+            <FiGithub />
+            <FiTwitter />
+          </div>
         </div>
       </footer>
     </section>

@@ -4,9 +4,10 @@
   /* justify-content: center; */
   /* align-items: center; */
   max-width: calc(100vw-50px);
-
-  height: calc(100vh - 64px);
+  /* min-height: calc(100% - 90px); */
+  height: 100vh;
   background-color: white;
+  /* position: relative; */
 }
 
 .main > section {

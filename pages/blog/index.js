@@ -34,7 +34,7 @@ export default function Blog({ posts }) {
   return (
     <section>
       <div className={styles.main}>
-        <h1>Here is a blog</h1>
+        <h1>My Blog</h1>
 
         <h3>Recent Posts:</h3>
         {mappedPosts.length ? (

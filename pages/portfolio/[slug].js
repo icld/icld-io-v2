@@ -31,12 +31,12 @@ export default function PortfolioPost({
     setMappedImages(() =>
       img.map((image, i) => {
         return {
-          image: imageBuilder.image(image),
+          image: imageBuilder.image(image).width(700).height(450),
         };
       })
     );
 
-    setImageUrl(imageBuilder.image(image));
+    setImageUrl(imageBuilder.image(image).width(700).height(450));
   }, [image, images, img]);
 
   useEffect(() => {
@@ -45,30 +45,32 @@ export default function PortfolioPost({
 
   return (
     <section>
-      <div className={styles.main}>
-        <h1>{title}</h1>
+      <container>
+        <div className={styles.main}>
+          <h1>{title}</h1>
 
-        {imageUrl && (
-          <a href={url} target='_blank' rel='noreferrer'>
-            <img alt='blog' className={styles.mainImage} src={imageUrl} />
-          </a>
-        )}
-        <div>
-          <ul>
-            {technology.map((t, i) => (
-              <li key={i}>{t}</li>
+          {imageUrl && (
+            <a href={url} target='_blank' rel='noreferrer'>
+              <img alt='blog' className={styles.mainImage} src={imageUrl} />
+            </a>
+          )}
+          <div>
+            <ul>
+              {technology.map((t, i) => (
+                <li key={i}>{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.body}>
+            <BlockContent blocks={body}></BlockContent>{' '}
+          </div>
+          <div>
+            {mappedImages.map((image, i) => (
+              <img alt='portfolio' src={image.image} key={i} />
             ))}
-          </ul>
+          </div>
         </div>
-        <div className={styles.body}>
-          <BlockContent blocks={body}></BlockContent>{' '}
-        </div>
-        <div>
-          {mappedImages.map((image, i) => (
-            <img alt='portfolio' src={image.image} key={i} />
-          ))}
-        </div>
-      </div>
+      </container>
     </section>
   );
 }

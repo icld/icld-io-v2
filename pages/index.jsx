@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <section>
+    <section style={{ height: '100vh' }}>
       <h1>welcome to icld.io </h1>
       <h2>my name is Ian Lyles </h2>
       <h2>what would you like to build?</h2>

@@ -1,4 +1,14 @@
 .footer {
+  /* position: absolute; */
+  height: 60px;
+
+  width: calc(100vw-50px);
+  max-width: calc(100vw-50px);
+  bottom: 0;
+}
+
+.main {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
