@@ -41,7 +41,7 @@ export default function Blog({ posts }) {
           mappedPosts.map((p, index) => (
             <div
               key={index}
-              className={styles.post}
+              className={styles.post} 
               onClick={() => router.push(`/blog/${p.slug.current}`)}
             >
               <h3>{p.title}</h3>
@@ -60,7 +60,9 @@ export default function Blog({ posts }) {
   );
 }
 
+
 export const getServerSideProps = async (pageContext) => {
+
   const query = encodeURIComponent('*[_type == "post"]');
   const url = `https://jwuejy9w.api.sanity.io/v1/data/query/production?query=${query}`;
   const result = await fetch(url).then((res) => res.json());

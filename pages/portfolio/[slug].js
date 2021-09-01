@@ -46,7 +46,7 @@ export default function PortfolioPost({
   return (
     <section>
       <container>
-        <div className={styles.main}>
+        <div className=''>
           <h1>{title}</h1>
 
           {imageUrl && (
@@ -61,7 +61,7 @@ export default function PortfolioPost({
               ))}
             </ul>
           </div>
-          <div className={styles.body}>
+          <div className=''>
             <BlockContent blocks={body}></BlockContent>{' '}
           </div>
           <div>

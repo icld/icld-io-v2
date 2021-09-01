@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'string',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -52,6 +57,11 @@ export default {
     {
       name: 'url',
       title: 'url',
+      type: 'string',
+    },
+    {
+      name: 'github',
+      title: 'Github',
       type: 'string',
     },
     {

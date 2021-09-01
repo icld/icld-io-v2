@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import { Link } from '../components/Link';
 import router, { useRouter } from 'next/router';
 
-import styles from '../styles/Header.module.css';
-
 const Header = (props) => {
   const router = useRouter();
   const [activeMenu, setActiveMenu] = useState(false);
@@ -21,24 +19,27 @@ const Header = (props) => {
 
   return (
     <section>
-      <nav
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <Link href='/'>ICLD</Link>
+      <nav className='flex items-center justify-between mt-4 mb-2 '>
+        <Link href='/' className='px-1 text-xl border-2 rounded-md'>
+          ICLD
+        </Link>
         {/* upper Nav */}
 
-        <div>
+        <div className='px-2 border-2 rounded-md text-md md:text-xl'>
           {navItems.map((item, i) =>
             item.name === 'lx' ? (
-              <a target='_blank' rel='noreferrer' href={item.href}>
+              <a
+                className='mx-2 md:mx-6'
+                target='_blank'
+                rel='noreferrer'
+                href={item.href}
+              >
                 {item.name}
               </a>
             ) : (
-              <Link href={item.href}>{item.name}</Link>
+              <Link href={item.href}>
+                <a className='mx-2 md:mx-6'>{item.name}</a>
+              </Link>
             )
           )}
         </div>

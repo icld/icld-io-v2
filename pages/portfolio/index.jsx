@@ -35,7 +35,7 @@ export default function Portfolio({ posts }) {
   console.log(posts);
   return (
     <div>
-      <div className={styles.main}>
+      <div className=''>
         <h1>Portfolio</h1>
 
         <h3>Recent Work:</h3>
@@ -43,15 +43,11 @@ export default function Portfolio({ posts }) {
           mappedPosts.map((p, index) => (
             <div
               key={index}
-              className={styles.post}
+              className=''
               onClick={() => router.push(`/portfolio/${p.slug.current}`)}
             >
               <h3>{p.title}</h3>
-              <img
-                alt='Main image'
-                className={styles.mainImage}
-                src={p.mainImage}
-              />
+              <img alt='Main image' className='' src={p.mainImage} />
             </div>
           ))
         ) : (

@@ -5,7 +5,8 @@
     "dataset": "production"
   },
   "project": {
-    "name": "studio"
+    "name": "studio",
+    "basePath": "/studio"
   },
   "plugins": [
     "@sanity/base",

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styles from '../styles/Form.module.css';
 import { useRouter } from 'next/router';
 
 export default function MyForm() {
