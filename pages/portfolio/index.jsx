@@ -39,7 +39,7 @@ export default function Portfolio({ posts }) {
     <div className='relative w-full px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8'>
       <div className=''>
         <h1 className='mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl'>
-          Here are some projects that I've been working on
+          Here are some projects that I have been working on
         </h1>
         {/* relative px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 */}
         <div className='flex flex-col items-center justify-center grid-cols-none p-2 py-16 mx-auto'>
@@ -51,14 +51,6 @@ export default function Portfolio({ posts }) {
                 image={p.mainImage}
                 slug={p.slug.current}
               />
-              // <div
-              //   key={index}
-              //   className=''
-              //   onClick={() => router.push(`/portfolio/${p.slug.current}`)}
-              // >
-              //   <h3>{p.title}</h3>
-              //   <img alt='Main image' className='' src={p.mainImage} />
-              // </div>
             ))
           ) : (
             <>No Posts Yet</>

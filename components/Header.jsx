@@ -36,7 +36,7 @@ const Header = (props) => {
         <div className=''>
           <Menu
             as='div'
-            className='relative z-10 block inline-block mr-2 text-left md:mr-1 md:hidden'
+            className='relative z-10 block mr-2 text-left md:mr-1 md:hidden'
           >
             {({ open }) => (
               <>
