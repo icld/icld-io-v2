@@ -3,7 +3,6 @@ import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
-import styles from '../../styles/Post.module.css';
 import Footer from '../../components/Footer';
 
 export default function Post({ title, body, image }) {
