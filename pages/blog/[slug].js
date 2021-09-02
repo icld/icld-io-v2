@@ -20,12 +20,10 @@ export default function Post({ title, body, image }) {
 
   return (
     <section>
-      <div className={styles.main}>
+      <div className=''>
         <h1>{title}</h1>
-        {imageUrl && (
-          <img alt='blog' className={styles.mainImage} src={imageUrl} />
-        )}
-        <div className={styles.body}>
+        {imageUrl && <img alt='blog' className='' src={imageUrl} />}
+        <div className=''>
           <BlockContent blocks={body}></BlockContent>{' '}
         </div>
       </div>

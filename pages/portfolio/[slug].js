@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/router';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
-import styles from '../../styles/PortfolioPost.module.css';
-import router from 'next/router';
 import Footer from '../../components/Footer';
 
 export default function PortfolioPost({
@@ -51,7 +49,7 @@ export default function PortfolioPost({
 
           {imageUrl && (
             <a href={url} target='_blank' rel='noreferrer'>
-              <img alt='blog' className={styles.mainImage} src={imageUrl} />
+              <img alt='blog' className='' src={imageUrl} />
             </a>
           )}
           <div>

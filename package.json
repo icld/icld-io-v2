@@ -12,11 +12,14 @@
   },
   "dependencies": {
     "@babel/core": "^7.15.0",
+    "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^11.1.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^0.140.22",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/typography": "^0.4.1",
     "next": "11.1.0",
     "next-compose-plugins": "^2.2.1",
     "react": "17.0.2",
@@ -34,6 +37,7 @@
     "lint-staged": "^11.1.2",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
-    "tailwindcss": "^2.2.9"
+    "tailwindcss": "^2.2.9",
+    "tailwindcss-textshadow": "^2.1.3"
   }
 }

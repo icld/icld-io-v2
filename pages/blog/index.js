@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
-import styles from '../../styles/Blog.module.css';
 import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/router';
 import Footer from '../../components/Footer';
@@ -30,10 +29,9 @@ export default function Blog({ posts }) {
     }
   }, [posts]);
 
-  console.log(posts);
   return (
     <section>
-      <div className={styles.main}>
+      <div className='flex flex-col items-center justify-center w-full m-auto'>
         <h1>My Blog</h1>
 
         <h3>Recent Posts:</h3>
@@ -41,15 +39,11 @@ export default function Blog({ posts }) {
           mappedPosts.map((p, index) => (
             <div
               key={index}
-              className={styles.post} 
+              className='w-2/3 cursor-pointer'
               onClick={() => router.push(`/blog/${p.slug.current}`)}
             >
               <h3>{p.title}</h3>
-              <img
-                alt='main image'
-                className={styles.mainImage}
-                src={p.mainImage}
-              />
+              <img alt='main image' className='' src={p.mainImage} />
             </div>
           ))
         ) : (
@@ -60,9 +54,7 @@ export default function Blog({ posts }) {
   );
 }
 
-
 export const getServerSideProps = async (pageContext) => {
-
   const query = encodeURIComponent('*[_type == "post"]');
   const url = `https://jwuejy9w.api.sanity.io/v1/data/query/production?query=${query}`;
   const result = await fetch(url).then((res) => res.json());

@@ -1,8 +1,9 @@
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Card from '../../components/Card';
 
-import styles from '../../styles/Portfolio.module.css';
+// import styles from '../../styles/Portfolio.module.css';
 
 import { useState, useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url';
@@ -23,7 +24,7 @@ export default function Portfolio({ posts }) {
         posts.map((p) => {
           return {
             ...p,
-            mainImage: imageBuilder.image(p.mainImage).width(500).height(250),
+            mainImage: imageBuilder.image(p.mainImage).width(700).height(350),
           };
         })
       );
@@ -33,26 +34,36 @@ export default function Portfolio({ posts }) {
   }, [posts]);
 
   console.log(posts);
-  return (
-    <div>
-      <div className=''>
-        <h1>Portfolio</h1>
 
-        <h3>Recent Work:</h3>
-        {mappedPosts.length ? (
-          mappedPosts.map((p, index) => (
-            <div
-              key={index}
-              className=''
-              onClick={() => router.push(`/portfolio/${p.slug.current}`)}
-            >
-              <h3>{p.title}</h3>
-              <img alt='Main image' className='' src={p.mainImage} />
-            </div>
-          ))
-        ) : (
-          <>No Posts Yet</>
-        )}
+  return (
+    <div className='relative w-full px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8'>
+      <div className=''>
+        <h1 className='mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl'>
+          Here are some projects that I've been working on
+        </h1>
+        {/* relative px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 */}
+        <div className='flex flex-col items-center justify-center grid-cols-none p-2 py-16 mx-auto'>
+          {mappedPosts.length ? (
+            mappedPosts.map((p, i) => (
+              <Card
+                key={i}
+                title={p.title}
+                image={p.mainImage}
+                slug={p.slug.current}
+              />
+              // <div
+              //   key={index}
+              //   className=''
+              //   onClick={() => router.push(`/portfolio/${p.slug.current}`)}
+              // >
+              //   <h3>{p.title}</h3>
+              //   <img alt='Main image' className='' src={p.mainImage} />
+              // </div>
+            ))
+          ) : (
+            <>No Posts Yet</>
+          )}
+        </div>
       </div>
     </div>
   );
