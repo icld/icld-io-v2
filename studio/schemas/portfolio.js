@@ -37,6 +37,14 @@ export default {
       },
     },
     {
+      name: 'mainImage2',
+      title: 'Main image2',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'images',
       title: 'Images',
       type: 'array',

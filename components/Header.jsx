@@ -22,7 +22,7 @@ const Header = (props) => {
 
   return (
     <section>
-      <nav className='flex items-center justify-between mt-4 mb-2 border-l-2 border-r-2 w-7/8 '>
+      <nav className='flex items-center justify-between w-full mt-6 mb-2 border-l-2 border-r-2 md:mt-12 '>
         <Link
           href='/'
           className='flex flex-row items-center justify-center ml-1 text-xl '
@@ -80,11 +80,11 @@ const Header = (props) => {
         </div>
 
         {/* Standard Nav */}
-        <div className='hidden w-1/2 mr-2 text-lg md:flex-row md:justify-between md:flex md:text-xl'>
+        <div className='hidden w-2/5 text-lg text-gray-800 md:flex-row md:justify-evenly md:flex md:text-xl'>
           {navItems.map((item, i) =>
             item.name === 'lx' ? (
               <a
-                className={`w-28 text-center rounded-xl p-1   ${
+                className={` text-center rounded-xl p-1   ${
                   router.pathname == item.href ? 'bg-red-300 text-white' : null
                 }`}
                 target='_blank'
@@ -96,10 +96,8 @@ const Header = (props) => {
             ) : (
               <Link href={item.href}>
                 <div
-                  className={`w-28 text-center rounded-xl p-1   ${
-                    router.pathname == item.href
-                      ? 'bg-red-300 text-white'
-                      : null
+                  className={` text-center rounded-xl p-1   ${
+                    router.pathname == item.href ? 'text-gray-800' : null
                   }`}
                 >
                   {item.name}
@@ -117,7 +115,7 @@ export default Header;
 const navItems = [
   { name: 'portfolio', href: '/portfolio' },
   { name: 'about', href: '/about' },
-  { name: 'lx', href: 'https://www.icldesign.com' },
+  // { name: 'lx', href: 'https://www.icldesign.com' },
   { name: 'contact', href: '/contact' },
   { name: 'blog', href: '/blog' },
 ];

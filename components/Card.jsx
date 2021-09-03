@@ -4,26 +4,23 @@ import { useRouter } from 'next/router';
 export default function (props) {
   const router = useRouter();
   return (
-    <div className='flex flex-col items-center justify-center w-full '>
+    <div className='flex flex-col items-center justify-center w-full overflow-hidden font-another group'>
       <Link
         href={`/portfolio/${props.slug}`}
         // onClick={() => router.push(`/portfolio/${props.slug}`)}
-        className='flex flex-col w-full h-full overflow-hidden transition-all duration-500 transform bg-transparent cursor-pointer group lg:max-w-3xl '
+        className='flex flex-col w-full h-full overflow-hidden transition-all duration-500 transform bg-transparent border-2 border-gray-100 cursor-pointer group lg:max-w-3xl'
       >
-        <div className='flex items-center justify-center p-4 '>
-          <div className=''>
-            <img
-              className='transition-all duration-500 transform border-2 hover:shadow-2xl hover:scale-105 '
-              src={props.image}
-              alt={props.title}
-            />
-          </div>
-        </div>
-        <div className='flex justify-between p-6'>
-          <div className='flex items-center space-x-4 transition-all duration-500 transform group-hover:text-shadow-xl group-hover:scale-105'>
-            <h1 className='text-2xl font-bold text-gray-900'>{props.title}</h1>
-          </div>
-          <div className='flex items-center space-x-6'></div>
+        {' '}
+        <div className='flex flex-col items-center text-3xl'>
+          <h1 className='text-lg text-left text-blue-700 font md:text-xl lg:text-2xl '>
+            {props.title}
+          </h1>
+
+          <img
+            className='mb-2 transition-all duration-500 group-hover:scale-105'
+            src={props.image}
+            alt={props.title}
+          />
         </div>
       </Link>
     </div>
