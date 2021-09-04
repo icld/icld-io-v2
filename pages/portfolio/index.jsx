@@ -36,14 +36,14 @@ export default function Portfolio({ posts }) {
   console.log(posts);
 
   return (
-    <div className='relative w-full px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8'>
+    <div className='relative w-full px-4 py-8 mx-auto lg:py-16 max-w-7xl sm:px-6 lg:px-8'>
       <div className=''>
-        <h1 className='mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl font-another'>
-          Here are some <span className='text-blue-600'> projects </span> that I
-          have been working on
+        <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>
+          Here are some <span className='text-yellow-500'> projects </span> that
+          I have been working on
         </h1>
         {/* relative px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 */}
-        <div className='grid items-center justify-center gap-4 p-2 py-16 mx-auto md:grid-cols-2'>
+        <div className='grid items-center justify-center gap-4 p-2 py-8 mx-auto lg:py-16 md:grid-cols-2'>
           {mappedPosts.length ? (
             mappedPosts.map((p, i) => (
               <Card

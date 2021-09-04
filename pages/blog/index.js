@@ -3,6 +3,7 @@ import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Footer from '../../components/Footer';
 
 export default function Blog({ posts }) {
@@ -20,7 +21,7 @@ export default function Blog({ posts }) {
         posts.map((p) => {
           return {
             ...p,
-            mainImage: imageBuilder.image(p.mainImage).width(500).height(250),
+            mainImage: imageBuilder.image(p.mainImage).width(900).height(400),
           };
         })
       );
@@ -28,34 +29,48 @@ export default function Blog({ posts }) {
       setMappedPosts([]);
     }
   }, [posts]);
-
+  console.log(posts);
   return (
     <section>
-      <div className='flex flex-col items-center justify-center w-full m-auto'>
-        <h1>My Blog</h1>
-
-        <h3>Recent Posts:</h3>
-        {mappedPosts.length ? (
-          mappedPosts.map((p, index) => (
-            <div
-              key={index}
-              className='w-2/3 cursor-pointer'
-              onClick={() => router.push(`/blog/${p.slug.current}`)}
-            >
-              <h3>{p.title}</h3>
-              <img alt='main image' className='' src={p.mainImage} />
-            </div>
-          ))
-        ) : (
-          <>No Posts Yet</>
-        )}
+      <div className='relative w-full px-4 py-8 mx-auto lg:py-16 max-w-7xl sm:px-6 lg:px-8'>
+        <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>
+          <span className='text-yellow-500'>icld.io</span> Very Interesting Blog
+        </h1>
+        <div className='flex flex-col items-center justify-center w-full p-2 py-8 lg:py-16 '>
+          {mappedPosts.length ? (
+            mappedPosts.map((p, index) => (
+              <div
+                key={index}
+                className='flex flex-col w-full mb-12 cursor-pointer lg:w-3/5'
+                onClick={() => router.push(`/blog/${p.slug}`)}
+              >
+                <div className='mb-1 text-2xl font-another'>{p.title}</div>
+                <img alt='main image' className='' src={p.mainImage} />
+                <div className='flex flex-row justify-between text-sm md:text-xl font-another'>
+                  <p> {p?.authName}</p> <div> {p?.publishedAt}</div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <>No Posts Yet</>
+          )}
+        </div>
       </div>
     </section>
   );
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = encodeURIComponent('*[_type == "post"]');
+  const query = encodeURIComponent(`*[_type == "post" ]{_id,
+    title,
+    publishedAt,
+    description,
+    "authName": author->name,
+    "authImg": author->image,
+    "slug": slug.current,
+    "categories":   category[]->{title, slug},
+    mainImage,
+    body,}`);
   const url = `https://jwuejy9w.api.sanity.io/v1/data/query/production?query=${query}`;
   const result = await fetch(url).then((res) => res.json());
 

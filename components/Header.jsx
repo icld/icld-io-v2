@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect, useRef } from 'react';
-import { Link } from '../components/Link';
+// import { Link } from '../components/Link';
+import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { ImMinus, ImPlus } from 'react-icons/im';
 import { ImArrowRight2 } from 'react-icons/im';
@@ -23,12 +24,11 @@ const Header = (props) => {
   return (
     <section>
       <nav className='flex items-center justify-between w-full mt-6 mb-2 border-l-2 border-r-2 md:mt-12 '>
-        <Link
-          href='/'
-          className='flex flex-row items-center justify-center ml-1 text-xl '
-        >
-          <GiForearm className='text-3xl' />
-          <div className='ml-3'>ICLD</div>
+        <Link href='/'>
+          <a className='flex flex-row items-center justify-center ml-1 text-xl '>
+            <GiForearm className='text-3xl' />
+            <div className='ml-3'>ICLD</div>
+          </a>
         </Link>
         {/* upper Nav */}
 
@@ -57,17 +57,18 @@ const Header = (props) => {
                       navItems.map((navI, i) => (
                         <Menu.Item key={i}>
                           <>
-                            <button
-                              onClick={() => router.push(`${navI.href}`)}
-                              className={`${
-                                active
-                                  ? 'hover:bg-violet-500 text-white'
-                                  : 'hover:text-white hover:bg-red-500'
-                              } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                            >
-                              <ImArrowRight2 className='mr-4 group-hover:text-pink-200 group-hover:text-xl' />
-                              <div className='text-center'>{navI.name}</div>
-                            </button>
+                            <Link href={navI.href}>
+                              <a
+                                className={`${
+                                  active
+                                    ? 'hover:bg-violet-500 text-white'
+                                    : 'hover:text-white hover:bg-red-500'
+                                } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                              >
+                                <ImArrowRight2 className='mr-4 group-hover:text-pink-200 group-hover:text-xl' />
+                                <div className='text-center'>{navI.name}</div>
+                              </a>
+                            </Link>
                           </>
                         </Menu.Item>
                       ))
@@ -95,13 +96,15 @@ const Header = (props) => {
               </a>
             ) : (
               <Link href={item.href}>
-                <div
-                  className={` text-center rounded-xl p-1   ${
-                    router.pathname == item.href ? 'text-gray-800' : null
-                  }`}
-                >
-                  {item.name}
-                </div>
+                <a>
+                  <div
+                    className={` text-center rounded-xl p-1   ${
+                      router.pathname == item.href ? 'text-gray-800' : null
+                    }`}
+                  >
+                    {item.name}
+                  </div>
+                </a>
               </Link>
             )
           )}
