@@ -32,7 +32,7 @@ export default function Post({ title, body, image }) {
 
 export const getServerSideProps = async (pageContext) => {
   const pageSlug = pageContext.query.slug;
-  console.log(pageSlug);
+  // console.log(pageSlug);
 
   if (!pageSlug) {
     return {

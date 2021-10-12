@@ -33,7 +33,7 @@ export default function Portfolio({ posts }) {
     }
   }, [posts]);
 
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <div className='relative w-full px-4 py-8 mx-auto lg:py-16 max-w-7xl sm:px-6 lg:px-8'>

@@ -2,66 +2,51 @@ import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
 import Link from 'next/router';
+import Image from 'next/image';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import Footer from '../../components/Footer';
+import urlFor from '../../lib/sanity/urlFor';
 
 export default function PortfolioPost({
   title,
   body,
   image,
-  siteUrl,
+  url,
   technology,
   images,
   github,
   image2,
 }) {
-  //   console.log(imagesUrls);
-  //   console.log(imageUrl);
+  console.log(images);
+  console.log(image);
 
   const [imageUrl, setImageUrl] = useState('');
   const [mappedImages, setMappedImages] = useState([]);
   const [img, setImg] = useState(images);
   const [image2Url, setImage2Url] = useState('');
 
-  useEffect(() => {
-    const imageBuilder = imageUrlBuilder({
-      projectId: 'jwuejy9w',
-      dataset: 'production',
-    });
-    setMappedImages(() =>
-      img.map((image, i) => {
-        return {
-          image: imageBuilder.image(image),
-          // .width(700).height(500),
-        };
-      })
-    );
-
-    setImageUrl(imageBuilder.image(image));
-    setImage2Url(imageBuilder.image(image2));
-  }, [image, images, img, image2]);
-
-  useEffect(() => {
-    console.log(mappedImages);
-  });
-
   return (
     <div className='relative mx-auto max-w-7xl lg:px-8'>
       <div className='relative bg-white '>
         <div className='relative px-4 pt-12 pb-16 sm:pt-16 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-2 '>
-          <img
-            className='hidden object-cover w-full h-56 gap-2 lg:block lg:h-full'
-            src={image2Url}
-            alt=''
-          />
+          <div className='relative hidden w-full lg:h-full lg:block '>
+            <Image
+              src={`${urlFor(image2).url()}`}
+              alt='Main image for page'
+              quality={10}
+              layout='fill'
+              objectFit='cover'
+            />
+          </div>
+
           <div className='lg:col-start-2 lg:pl-8'>
             <div className='mx-auto text-base max-w-prose lg:max-w-lg lg:ml-auto lg:mr-0'>
               <div className='flex flex-row justify-between lg:block'>
                 <div className='flex flex-col'>
-                  <h2 className='font-semibold leading-6 tracking-wide text-red-800 uppercase'>
+                  {/* <h2 className='font-semibold leading-6 tracking-wide text-red-800 uppercase'>
                     Site
-                  </h2>
+                  </h2> */}
                   <h3 className='mt-2 mb-4 text-4xl font-extrabold leading-8 tracking-tight text-gray-900 md:text-5xl font-another'>
                     {title}
                   </h3>
@@ -83,11 +68,11 @@ export default function PortfolioPost({
                 <li>
                   <a
                     className='p-1 border hover:bg-gray-900 hover:text-white'
-                    href={`${siteUrl}`}
+                    href={url}
                     target='_blank'
                     rel='noreferrer'
                   >
-                    {console.log(github)}
+                    {/* {console.log(github)} */}
                     Live Site
                   </a>
                 </li>
@@ -109,20 +94,30 @@ export default function PortfolioPost({
                   <BlockContent blocks={body}></BlockContent>
                 </p>
               </div>
-              {/* <img
-                className='block object-cover w-full mt-6 h-28 lg:hidden'
-                src={image2Url}
-                alt=''
-              /> */}
-              <div className='grid grid-rows-2 gap-6 mt-6'>
-                {mappedImages.map((image, i) => (
-                  <img
-                    className='object-cover w-full h-full overflow-hidden'
-                    alt='portfolio'
-                    src={image.image}
-                    key={i}
-                  />
-                ))}
+
+              <div className='relative grid w-full grid-cols-1 gap-6 mt-6'>
+                {images.map((item) => {
+                  console.log(item);
+
+                  return (
+                    <div className='relative w-full h-72'>
+                      <Image
+                        src={`${urlFor(item).width(500).height(400)}`}
+                        alt='Other image for page'
+                        // quality={30}
+                        layout='fill'
+                        objectFit='cover'
+                        key={item._key}
+                      />
+                    </div>
+
+                    // <img
+                    //   className='object-cover w-full h-full overflow-hidden'
+                    //   alt='portfolio'
+                    //   src={`${urlFor(item).url()}`}
+                    // />
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -163,7 +158,7 @@ export default function PortfolioPost({
 
 export const getServerSideProps = async (pageContext) => {
   const pageSlug = pageContext.query.slug;
-  console.log(pageSlug);
+  // console.log(pageSlug);
 
   if (!pageSlug) {
     return {
@@ -180,7 +175,7 @@ export const getServerSideProps = async (pageContext) => {
   const result = await fetch(url).then((res) => res.json());
   const post = result.result[0];
 
-  console.log(post);
+  // console.log(post);
 
   if (!post) {
     return {
@@ -196,7 +191,7 @@ export const getServerSideProps = async (pageContext) => {
         url: post.url || null,
         technology: post.technology || null,
         images: post.images || null,
-        url: post.siteUrl || null,
+        url: post.url || null,
         github: post.github || null,
       },
     };
