@@ -100,14 +100,13 @@ export default function PortfolioPost({
                   console.log(item);
 
                   return (
-                    <div className='relative w-full h-72'>
+                    <div className='relative w-full h-72' key={item._key}>
                       <Image
                         src={`${urlFor(item).width(500).height(400)}`}
                         alt='Other image for page'
                         // quality={30}
                         layout='fill'
                         objectFit='cover'
-                        key={item._key}
                       />
                     </div>
 
