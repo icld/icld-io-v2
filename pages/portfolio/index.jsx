@@ -42,7 +42,7 @@ export default function Portfolio({ posts }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className='relative top-0 w-full h-screen px-4 py-8 m-auto mt-16 mb-16 lg:py-16 max-w-7xl sm:px-6 lg:px-8'
+      className='relative z-20 w-full h-screen px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 max-w-7xl sm:px-6 lg:px-8'
     >
       <div className=''>
         <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>

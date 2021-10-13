@@ -25,20 +25,28 @@ const Header = (props) => {
 
   return (
     <section className='relative z-50 flex items-center justify-center w-full '>
-      <nav className='absolute top-0 z-20 flex items-center justify-between w-11/12 h-20 m-auto '>
-        {/* upper Nav */}
-
+      <nav
+        className={` 
+        ${
+          router.pathname == '/' && 'absolute'
+        } top-0 z-20 flex items-center justify-between w-11/12 h-20 m-auto `}
+      >
         <Title />
+
         {/* Nav Drop Down Menu */}
         <div className=''>
           <Menu
             as='div'
-            className='relative z-10 block mr-2 text-left md:mr-1 md:hidden'
+            className='relative top-0 z-10 block mr-2 text-left md:mr-1 md:hidden'
           >
             {({ open }) => (
               <>
-                <Menu.Button className='inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
-                  {open ? <ImMinus className='' /> : <ImPlus />}
+                <Menu.Button className='inline-flex justify-center w-full px-4 py-2 text-sm font-medium bg-yellow-400 rounded-md mix-blend-lighten hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
+                  {open ? (
+                    <ImMinus />
+                  ) : (
+                    <ImPlus className=' mix-blend-lighten' />
+                  )}
                 </Menu.Button>
                 <Transition
                   as={Fragment}
@@ -49,12 +57,12 @@ const Header = (props) => {
                   leaveFrom='transform opacity-100 scale-100'
                   leaveTo='transform opacity-0 scale-95'
                 >
-                  <Menu.Items className='absolute right-0 justify-end w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                  <Menu.Items className='absolute right-0 justify-end w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none '>
                     {({ active }) =>
                       navItems.map((navI, i) => (
                         <Menu.Item key={i}>
                           <>
-                            <Link href={navI.href}>
+                            <Link href={navI.href} passHref>
                               <a
                                 className={` w-full  ${
                                   router.pathname === navI.href
@@ -88,7 +96,11 @@ const Header = (props) => {
         </div>
 
         {/* Standard Nav */}
-        <div className='hidden w-2/5 text-lg text-yellow-100 md:flex-row md:justify-evenly md:flex md:text-3xl font-another'>
+        <div
+          className={`items-center hidden w-2/5 text-lg ${
+            router.pathname == '/' && 'text-yellow-300 text-shadow-lg '
+          } md:flex-row md:justify-evenly md:flex md:text-3xl font-another `}
+        >
           {navItems.map((item, i) =>
             item.name === 'lx' ? (
               <motion.a
@@ -98,7 +110,7 @@ const Header = (props) => {
                   delay: 3,
                   duration: 4,
                 }}
-                className={` text-center rounded-xl p-1   ${
+                className={` text-center rounded-xl p-1  hover:text-yellow-100 ${
                   router.pathname == item.href ? 'bg-red-300 text-white' : null
                 }`}
                 target='_blank'
@@ -129,9 +141,9 @@ const Header = (props) => {
                   }}
                 >
                   <div
-                    className={` text-center rounded-xl p-1   ${
-                      router.pathname == item.href ? 'text-gray-50' : null
-                    }`}
+                    className={` text-center rounded-xl p-1    ${
+                      router.pathname == item.href && 'text-yellow-300'
+                    } ${router.pathname == '/' && 'hover:text-yellow-100'}`}
                   >
                     {item.name}
                   </div>

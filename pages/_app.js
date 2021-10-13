@@ -8,9 +8,9 @@ import { AnimatePresence } from 'framer-motion';
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
   return getLayout(
-    <AnimatePresence exitBeforeEnter initial={false}>
-      <Component {...pageProps} />
-    </AnimatePresence>
+    // <AnimatePresence exitBeforeEnter initial={false}>
+    <Component {...pageProps} />
+    // </AnimatePresence>
   );
 }
 
