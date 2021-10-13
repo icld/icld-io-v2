@@ -25,8 +25,8 @@ export default {
     {
       name: 'technology',
       title: 'Technology',
-      type: 'array',
-      of: [{ type: 'string' }],
+      type: 'reference',
+      to: [{ type: 'tech' }],
     },
     {
       name: 'mainImage',
