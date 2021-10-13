@@ -6,7 +6,7 @@ import { Link } from './Link';
 import { FiArrowLeft, FiArrowRight, FiArrowUpLeft } from 'react-icons/fi';
 export default function Example() {
   return (
-    <div className='overflow-hidden bg-white'>
+    <div className='relative overflow-hidden bg-white'>
       <div className='relative px-4 py-8 mx-auto lg:py-16 max-w-7xl sm:px-6 lg:px-8 '>
         {/* <div className='absolute top-0 bottom-0 hidden w-screen lg:block bg-gray-50 left-3/4' /> */}
         <div className='mx-auto text-base max-w-prose md:grid md:grid-cols-2 md:gap-8 md:max-w-none'></div>

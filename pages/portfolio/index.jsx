@@ -2,6 +2,7 @@ import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Card from '../../components/Card';
+import { motion } from 'framer-motion';
 
 // import styles from '../../styles/Portfolio.module.css';
 
@@ -36,7 +37,13 @@ export default function Portfolio({ posts }) {
   // console.log(posts);
 
   return (
-    <div className='relative w-full px-4 py-8 mx-auto lg:py-16 max-w-7xl sm:px-6 lg:px-8'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className='relative top-0 w-full h-screen px-4 py-8 m-auto mt-16 mb-16 lg:py-16 max-w-7xl sm:px-6 lg:px-8'
+    >
       <div className=''>
         <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>
           Here are some <span className='text-yellow-500'> projects </span> that
@@ -58,7 +65,7 @@ export default function Portfolio({ posts }) {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

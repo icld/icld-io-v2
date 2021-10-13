@@ -5,6 +5,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+import { motion } from 'framer-motion';
 
 export default function Blog({ posts }) {
   const [mappedPosts, setMappedPosts] = useState([]);
@@ -31,7 +32,12 @@ export default function Blog({ posts }) {
   }, [posts]);
   // console.log(posts);
   return (
-    <section>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className='relative w-full px-4 py-8 mx-auto lg:py-16 max-w-7xl sm:px-6 lg:px-8'>
         <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>
           <span className='text-yellow-500'>icld.io</span> Very Interesting Blog
@@ -56,7 +62,7 @@ export default function Blog({ posts }) {
           )}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

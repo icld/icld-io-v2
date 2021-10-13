@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { ImMinus, ImPlus } from 'react-icons/im';
 import { ImArrowRight2 } from 'react-icons/im';
-import { GiForearm } from 'react-icons/gi';
+import { GiDuration, GiForearm } from 'react-icons/gi';
+import { motion } from 'framer-motion';
 import router, { useRouter } from 'next/router';
+import Title from './Title';
 
 const Header = (props) => {
   const router = useRouter();
@@ -22,16 +24,11 @@ const Header = (props) => {
   });
 
   return (
-    <section>
-      <nav className='flex items-center justify-between w-full mt-6 mb-2 border-l-2 border-r-2 md:mt-12 '>
-        <Link href='/'>
-          <a className='flex flex-row items-center justify-center ml-1 text-xl '>
-            <GiForearm className='text-3xl' />
-            <div className='ml-3'>ICLD</div>
-          </a>
-        </Link>
+    <section className='relative z-50 flex items-center justify-center w-full '>
+      <nav className='absolute top-0 z-20 flex items-center justify-between w-11/12 h-20 m-auto '>
         {/* upper Nav */}
 
+        <Title />
         {/* Nav Drop Down Menu */}
         <div className=''>
           <Menu
@@ -52,21 +49,31 @@ const Header = (props) => {
                   leaveFrom='transform opacity-100 scale-100'
                   leaveTo='transform opacity-0 scale-95'
                 >
-                  <Menu.Items className='absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                  <Menu.Items className='absolute right-0 justify-end w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                     {({ active }) =>
                       navItems.map((navI, i) => (
                         <Menu.Item key={i}>
                           <>
                             <Link href={navI.href}>
                               <a
-                                className={`${
-                                  active
-                                    ? 'hover:bg-violet-500 text-white'
+                                className={` w-full  ${
+                                  router.pathname === navI.href
+                                    ? ' text-white bg-yellow-500'
                                     : 'hover:text-white hover:bg-red-500'
-                                } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                                } group flex rounded-md items-center justify-end w-full px-2 py-2 text-sm   `}
                               >
-                                <ImArrowRight2 className='mr-4 group-hover:text-pink-200 group-hover:text-xl' />
-                                <div className='text-center'>{navI.name}</div>
+                                <div className='z-50 flex flex-row items-center justify-center w-full'>
+                                  <motion.div
+                                    // initial={}
+                                    animate={{ x: ['25%', '25%'] }}
+                                    className='flex items-center justify-center w-1/2 '
+                                  >
+                                    <ImArrowRight2 className='text-center ' />
+                                  </motion.div>
+                                  <div className='w-1/2 text-center'>
+                                    {navI.name}
+                                  </div>
+                                </div>
                               </a>
                             </Link>
                           </>
@@ -81,10 +88,16 @@ const Header = (props) => {
         </div>
 
         {/* Standard Nav */}
-        <div className='hidden w-2/5 text-lg text-gray-800 md:flex-row md:justify-evenly md:flex md:text-xl'>
+        <div className='hidden w-2/5 text-lg text-yellow-100 md:flex-row md:justify-evenly md:flex md:text-3xl font-another'>
           {navItems.map((item, i) =>
             item.name === 'lx' ? (
-              <a
+              <motion.a
+                initial={{ y: '-50%' }}
+                animate={{ y: '0%' }}
+                transition={{
+                  delay: 3,
+                  duration: 4,
+                }}
                 className={` text-center rounded-xl p-1   ${
                   router.pathname == item.href ? 'bg-red-300 text-white' : null
                 }`}
@@ -93,18 +106,36 @@ const Header = (props) => {
                 href={item.href}
               >
                 {item.name}
-              </a>
+              </motion.a>
             ) : (
-              <Link href={item.href}>
-                <a>
+              <Link href={item.href} passHref>
+                <motion.a
+                  initial={{ y: '-150%' }}
+                  animate={{
+                    y: '0%',
+                    transition: {
+                      type: 'bounce',
+                      delay: i,
+                      duration: 1,
+                    },
+                  }}
+                  whileTap={{
+                    scale: 0.9,
+                    transition: { y: { stiffness: 1000, velocity: -100 } },
+                  }}
+                  whileHover={{
+                    scale: 1.1,
+                    transition: { y: { stiffness: 1000, velocity: -100 } },
+                  }}
+                >
                   <div
                     className={` text-center rounded-xl p-1   ${
-                      router.pathname == item.href ? 'text-gray-800' : null
+                      router.pathname == item.href ? 'text-gray-50' : null
                     }`}
                   >
                     {item.name}
                   </div>
-                </a>
+                </motion.a>
               </Link>
             )
           )}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import Footer from '../../components/Footer';
+import { motion } from 'framer-motion';
 
 export default function Post({ title, body, image }) {
   const [imageUrl, setImageUrl] = useState('');
@@ -18,7 +19,12 @@ export default function Post({ title, body, image }) {
   }, [image]);
 
   return (
-    <section>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className=''>
         <h1>{title}</h1>
         {imageUrl && <img alt='blog' className='' src={imageUrl} />}
@@ -26,7 +32,7 @@ export default function Post({ title, body, image }) {
           <BlockContent blocks={body}></BlockContent>{' '}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

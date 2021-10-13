@@ -7,6 +7,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import Footer from '../../components/Footer';
 import urlFor from '../../lib/sanity/urlFor';
+import { motion } from 'framer-motion';
 
 export default function PortfolioPost({
   title,
@@ -27,7 +28,13 @@ export default function PortfolioPost({
   const [image2Url, setImage2Url] = useState('');
 
   return (
-    <div className='relative mx-auto max-w-7xl lg:px-8'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className='relative mx-auto max-w-7xl lg:px-8'
+    >
       <div className='relative bg-white '>
         <div className='relative px-4 pt-12 pb-16 sm:pt-16 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-2 '>
           <div className='relative hidden w-full lg:h-full lg:block '>
@@ -122,7 +129,7 @@ export default function PortfolioPost({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
 
     //   <section>
     //     <container>
