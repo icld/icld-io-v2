@@ -4,10 +4,6 @@ import { useRouter } from 'next/router';
 export default function MyForm() {
   const router = useRouter();
 
-  const [isName, setIsName] = useState(false);
-  const [isEmail, setIsEmail] = useState(false);
-  const [isMessage, setIsMessage] = useState(false);
-
   const [canSubmit, setCanSubmit] = useState(false);
 
   const handleSubmit = (event) => {

@@ -5,9 +5,11 @@ import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
+import AddCommentForm from '../../components/AddCommentForm/AddCommentForm';
 
-export default function Post({ title, body, image }) {
+export default function Post({ title, body, image, id }) {
   const [imageUrl, setImageUrl] = useState('');
+  // console.log(id);
 
   useEffect(() => {
     const imageBuilder = imageUrlBuilder({
@@ -32,6 +34,7 @@ export default function Post({ title, body, image }) {
           <BlockContent blocks={body}></BlockContent>{' '}
         </div>
       </div>
+      <AddCommentForm _id={id} />
     </motion.section>
   );
 }
@@ -64,6 +67,7 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
+        id: post._id,
         body: post.body,
         title: post.title,
         image: post.mainImage,

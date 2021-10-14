@@ -1,47 +1,37 @@
 export default {
   name: 'comment',
-  title: 'Comment',
   type: 'document',
+  title: 'Comment',
   fields: [
     {
       name: 'name',
-      title: 'User Name',
       type: 'string',
     },
     {
       name: 'email',
-      title: 'Email',
       type: 'string',
     },
     {
-      name: 'userImage',
-      title: 'User Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    },
-    {
       name: 'comment',
-      title: 'Comment',
       type: 'text',
     },
     {
-      name: 'childComments',
-      title: 'Child Comments',
-      type: 'array',
-      of: [{ type: 'comment' }],
-    },
-    {
-      name: 'approved',
-      title: 'Approved',
-      type: 'boolean',
+      name: 'post',
+      type: 'reference',
+      to: [{ type: 'post' }],
     },
   ],
   preview: {
     select: {
-      title: 'name',
-      subtitle: 'comment',
+      name: 'name',
+      comment: 'comment',
+      post: 'post.title',
+    },
+    prepare({ name, comment, post }) {
+      return {
+        title: `${name} on ${post}`,
+        subtitle: comment,
+      };
     },
   },
 };
