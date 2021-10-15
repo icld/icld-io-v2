@@ -31,6 +31,7 @@
     "react-hook-form": "^7.17.3",
     "react-icons": "^4.2.0",
     "react-modal": "^3.14.3",
+    "react-visibility-sensor": "^5.1.1",
     "sanitize-html": "^2.5.2",
     "simple-icons": "^5.10.0",
     "zustand": "^3.5.13"
