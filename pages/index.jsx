@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import VisibilitySensor from 'react-visibility-sensor';
 import { useStore } from '../lib/zustand/store';
+import BouncingDownArrow from '../components/SmallComponents/BouncingDownArrow';
 
 export default function Home() {
   const router = useRouter();
@@ -23,15 +24,8 @@ export default function Home() {
   //   };
   // }, []);
 
-  const scrollToRef = (ref) => {
-    window.scrollTo({
-      top: (0, ref.current.offsetTop),
-      behavior: 'smooth',
-    });
-  };
-
   return (
-    <div className='' ref={heroRef}>
+    <div className='flex flex-col items-center' ref={heroRef}>
       <Hero />
 
       {/* About Section */}
@@ -46,6 +40,7 @@ export default function Home() {
           <About />
         </div>
       </VisibilitySensor>
+      <BouncingDownArrow up={heroRef} down={aboutRef} />
     </div>
   );
 }
