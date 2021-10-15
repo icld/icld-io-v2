@@ -7,6 +7,8 @@ import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
 import AddCommentForm from '../../components/AddCommentForm/AddCommentForm';
 
+import { useUser } from '@auth0/nextjs-auth0';
+
 export default function Post({ title, body, image, id }) {
   const [imageUrl, setImageUrl] = useState('');
   // console.log(id);
@@ -20,6 +22,9 @@ export default function Post({ title, body, image, id }) {
     setImageUrl(imageBuilder.image(image));
   }, [image]);
 
+  const { user, error, isLoading } = useUser();
+
+  console.log(user);
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -34,6 +39,16 @@ export default function Post({ title, body, image, id }) {
           <BlockContent blocks={body}></BlockContent>{' '}
         </div>
       </div>
+      {user ? (
+        <>
+          {' '}
+          <h2>{user.name}</h2>
+          <a href='/api/auth/logout'>Logout</a>{' '}
+        </>
+      ) : (
+        <a href='/api/auth/login'>Login</a>
+      )}
+
       <AddCommentForm _id={id} />
     </motion.section>
   );
