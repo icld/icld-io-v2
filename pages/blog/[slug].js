@@ -36,14 +36,13 @@ export default function Post({ title, body, image, id }) {
         <h1>{title}</h1>
         {imageUrl && <img alt='blog' className='' src={imageUrl} />}
         <div className=''>
-          <BlockContent blocks={body}></BlockContent>{' '}
+          <BlockContent blocks={body}></BlockContent>
         </div>
       </div>
       {user ? (
         <>
-          {' '}
           <h2>{user.name}</h2>
-          <a href='/api/auth/logout'>Logout</a>{' '}
+          <a href='/api/auth/logout'>Logout</a>
         </>
       ) : (
         <a href='/api/auth/login'>Login</a>
