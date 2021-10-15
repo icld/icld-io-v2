@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Image from 'next/image';
 import Footer from '../components/Footer';
 import About from '../components/About';
+import Avatar from '../components/Auth/Avatar';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import VisibilitySensor from 'react-visibility-sensor';
@@ -48,7 +49,7 @@ export default function Home() {
             objectFit='cover'
           />
         </div>
-
+        <Avatar />
         {/* Bouncing Down Arrow */}
         <motion.div
           variants={chevronVariants}
@@ -112,15 +113,23 @@ const chevronVariants = {
   },
 
   bounce: {
-    y: ['10%', '-10%'],
-    transition: {
-      type: 'spring',
-      stiffness: 50,
-      yoyo: Infinity,
-      duration: 1,
-      damping: 10,
-      repeatDelay: 0,
-      ease: 'easeOut',
+    y: {
+      value: ['10%', '-10%'],
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        yoyo: Infinity,
+        duration: 1,
+        damping: 10,
+        repeatDelay: 0,
+        ease: 'easeOut',
+      },
+    },
+    x: {
+      value: '-800%',
+      transition: {
+        duration: 0.5,
+      },
     },
   },
 };
