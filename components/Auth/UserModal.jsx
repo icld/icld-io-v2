@@ -91,10 +91,10 @@ export default function UserModal() {
                   method='POST'
                   netlify-data='true'
                   onSubmit={() => handleSubmit()}
-                  name='contact'
+                  name='sayHi'
                   className='flex flex-col items-center justify-center w-full'
                 >
-                  <input type='hidden' name='form-name' value='contact' />
+                  <input type='hidden' name='form-name' value='sayHi' />
                   <input type='hidden' name='email' value={user?.email} />
                   <input type='hidden' name='name' value={user?.name} />
                   <textarea
