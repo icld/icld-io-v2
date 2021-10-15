@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { motion } from 'framer-motion';
 
 export default function Layout({ title, description, children }) {
   return (
@@ -14,6 +13,7 @@ export default function Layout({ title, description, children }) {
       >
         <main
           className=''
+
           // className='px-4 mx-auto max-w-7xl sm:px-6 lg:px-8'
         >
           {children}

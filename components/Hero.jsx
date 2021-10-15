@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Avatar from '../components/Auth/Avatar';
 import hero from '../public/hero_home.jpg';
 
 function Hero({ aboutRef, heroRef }) {
@@ -22,7 +21,6 @@ function Hero({ aboutRef, heroRef }) {
             className='bg-black '
           />
         </div>
-        <Avatar />
 
         {/* <BouncingDownArrow /> */}
       </motion.section>

@@ -12,7 +12,6 @@ export default function Contact() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h1>Contact</h1>
       <Form />
     </motion.section>
   );

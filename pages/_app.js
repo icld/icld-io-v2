@@ -4,7 +4,7 @@ import Header from '../components/Header';
 // import '../styles/globals.css';
 import 'tailwindcss/tailwind.css';
 import { AnimatePresence } from 'framer-motion';
-
+import Avatar from '../components/Auth/Avatar';
 import { UserProvider } from '@auth0/nextjs-auth0';
 
 function MyApp({ Component, pageProps }) {
@@ -12,6 +12,8 @@ function MyApp({ Component, pageProps }) {
   return getLayout(
     <UserProvider>
       <AnimatePresence exitBeforeEnter initial={false}>
+        <Avatar />
+
         <Component {...pageProps} />
       </AnimatePresence>
     </UserProvider>
