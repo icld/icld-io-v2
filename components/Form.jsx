@@ -6,25 +6,26 @@ export default function MyForm() {
 
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    event.preventDefault();
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    setCanSubmit(true);
-  };
+  // const handleSubmit = (event) => {
+  //   const form = event.currentTarget;
+  //   event.preventDefault();
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
+  //   setCanSubmit(true);
+  // };
 
   return (
     <div className=''>
       <section className='relative text-gray-600 body-font'>
         <form
           className=''
-          onSubmit={() => handleSubmit()}
+          // onSubmit={() => handleSubmit()}
           name='contact'
           method='POST'
           netlify-data='true'
+          netlify-honeypot='secret-field'
           action='/'
         >
           <input type='hidden' name='form-name' value='contact' />
