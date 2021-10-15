@@ -104,6 +104,7 @@ const Header = (props) => {
           {navItems.map((item, i) =>
             item.name === 'lx' ? (
               <motion.a
+                key={i}
                 initial={{ y: '-50%' }}
                 animate={{ y: '0%' }}
                 transition={{
@@ -120,7 +121,7 @@ const Header = (props) => {
                 {item.name}
               </motion.a>
             ) : (
-              <Link href={item.href} passHref>
+              <Link key={i} href={item.href} passHref>
                 <motion.a
                   initial={{ y: '-150%' }}
                   animate={{

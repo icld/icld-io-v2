@@ -19,5 +19,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwindcss-textshadow'),
+    require('hide-tailwind-scrollbar'),
   ],
 };

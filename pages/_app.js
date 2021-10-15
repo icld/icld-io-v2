@@ -11,10 +11,9 @@ function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
   return getLayout(
     <UserProvider>
-      {/* <AnimatePresence exitBeforeEnter initial={false}> */}
-      <Component {...pageProps} />
-
-      {/* </AnimatePresence> */}
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <Component {...pageProps} />
+      </AnimatePresence>
     </UserProvider>
   );
 }
