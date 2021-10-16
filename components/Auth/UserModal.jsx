@@ -4,13 +4,15 @@ import { Fragment, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/outline';
-import { useModalStore } from '../../lib/zustand/store';
+import { useModalStore, useMessageFormStore } from '../../lib/zustand/store';
+
 import MessageForm from './MessageForm';
 
 export default function UserModal() {
   const router = useRouter();
   const { modalOpen, setModalOpen } = useModalStore();
   const { user, error, isLoading } = useUser();
+  const { messageSent, setMessageSent } = useMessageFormStore();
 
   const cancelButtonRef = useRef(null);
 
@@ -18,7 +20,7 @@ export default function UserModal() {
     <Transition.Root show={modalOpen} as={Fragment}>
       <Dialog
         as='div'
-        className='fixed inset-0 z-10 overflow-y-auto'
+        className='fixed inset-0 z-50 overflow-y-auto'
         initialFocus={cancelButtonRef}
         onClose={() => setModalOpen(false)}
       >
@@ -61,15 +63,17 @@ export default function UserModal() {
                     height={50}
                   ></Image>
                 </div>
-                <div className='mt-3 text-center sm:mt-5'>
+                <div className='mt-1 text-center sm:mt-5'>
                   <Dialog.Title
                     as='h3'
                     className='text-lg font-medium leading-6 text-gray-900'
                   >
-                    Welcome
+                    {messageSent ? 'Nice Work,' : 'Welcome'}
                   </Dialog.Title>
-                  <div className='mt-2'>
-                    <p className='text-sm text-gray-800'>{user?.name}</p>
+                  <div className='mt-1'>
+                    <p className='text-lg font-bold text-gray-800'>
+                      {user?.name}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -80,13 +84,13 @@ export default function UserModal() {
               <div className='mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense'>
                 <button
                   type='button'
-                  className='inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm'
+                  className='inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white capitalize bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm'
                   onClick={async () => {
                     await router.push('/api/auth/logout');
                     setModalOpen(false);
                   }}
                 >
-                  Logout
+                  Log {user?.nickname} out
                 </button>
                 <button
                   type='button'
