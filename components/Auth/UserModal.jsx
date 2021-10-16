@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/outline';
 import { useModalStore } from '../../lib/zustand/store';
+import MessageForm from './MessageForm';
 
 export default function UserModal() {
   const router = useRouter();
@@ -12,18 +13,6 @@ export default function UserModal() {
   const { user, error, isLoading } = useUser();
 
   const cancelButtonRef = useRef(null);
-
-  const [canSubmit, setCanSubmit] = useState(false);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    event.preventDefault();
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    setCanSubmit(true);
-  };
 
   return (
     <Transition.Root show={modalOpen} as={Fragment}>
@@ -86,33 +75,7 @@ export default function UserModal() {
               </div>
 
               {/* Message Form */}
-              <div className='flex flex-col items-center justify-center w-full'>
-                <form
-                  method='POST'
-                  netlify-data='true'
-                  netlify-honeypot='secret-field'
-                  // onSubmit={() => handleSubmit()}
-                  name='hello'
-                  action='/'
-                  className='flex flex-col items-center justify-center w-full'
-                >
-                  <input type='hidden' name='form-hello' value='hello' />
-                  {/* <input type='hidden' name='email' value={user?.email} />
-                  <input type='hidden' name='name' value={user?.name} /> */}
-                  <textarea
-                    id='message'
-                    name='message'
-                    placeholder='Say Hi! I will get right back to you!'
-                    className='w-full h-32 px-3 py-1 mt-4 text-base leading-6 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none resize-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'
-                  />
-                  <button
-                    type='submit'
-                    className='px-6 py-2 mt-2 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600'
-                  >
-                    Send it off!
-                  </button>
-                </form>
-              </div>
+              <MessageForm />
 
               <div className='mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense'>
                 <button
