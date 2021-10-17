@@ -19,8 +19,8 @@ export default function PortfolioPost({
   github,
   image2,
 }) {
-  console.log(images);
-  console.log(image);
+  // console.log(images);
+  // console.log(image);
 
   const [imageUrl, setImageUrl] = useState('');
   const [mappedImages, setMappedImages] = useState([]);

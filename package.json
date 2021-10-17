@@ -26,6 +26,7 @@
     "@tailwindcss/typography": "^0.4.1",
     "axios": "^0.23.0",
     "framer-motion": "^4.1.17",
+    "groq": "^2.15.0",
     "hide-tailwind-scrollbar": "^2.0.0",
     "next": "11.1.0",
     "next-compose-plugins": "^2.2.1",

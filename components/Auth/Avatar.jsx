@@ -5,7 +5,7 @@ import UserModal from './UserModal';
 export default function Avatar() {
   const { user, error, isLoading } = useUser();
   const { modalOpen, setModalOpen } = useModalStore();
-  console.log(user);
+  // console.log(user);
   return (
     <div className='absolute z-50 flex-shrink-0 block p-4 text-yellow-300 group font-another'>
       {user ? (

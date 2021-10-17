@@ -40,7 +40,8 @@ export default {
     {
       name: 'publishedAt',
       title: 'Published at',
-      type: 'date',
+      type: 'datetime',
+      initialValue: new Date().toISOString(),
     },
     {
       name: 'body',

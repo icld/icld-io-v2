@@ -17,6 +17,7 @@ function MessageForm() {
     setMessageOpen(false);
     setMessageSent(false);
     setScaleY(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const {
@@ -28,7 +29,7 @@ function MessageForm() {
   } = useForm();
 
   async function onSubmitForm(values) {
-    console.log(values);
+    // console.log(values);
 
     let config = {
       method: 'post',
@@ -41,11 +42,11 @@ function MessageForm() {
 
     try {
       const response = await axios(config);
-      console.log(response);
+      // console.log(response);
       if (response.status == 200) {
         reset();
         setMessageSent(true);
-        console.log('Success');
+        // console.log('Success');
       }
     } catch (err) {
       console.error(err);

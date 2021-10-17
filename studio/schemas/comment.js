@@ -16,9 +16,19 @@ export default {
       type: 'text',
     },
     {
+      name: 'publishedAt',
+      title: 'Published at',
+      type: 'datetime',
+    },
+    {
       name: 'post',
       type: 'reference',
       to: [{ type: 'post' }],
+    },
+    {
+      name: 'photoUrl',
+      title: 'Photo Url',
+      type: 'text',
     },
   ],
   preview: {
