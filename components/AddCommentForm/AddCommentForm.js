@@ -88,7 +88,7 @@ export default function AddCommentForm({ _id }) {
             type='hidden'
             {...register('email', { required: true })}
             className='block w-full mt-1 form-input'
-            value={user?.email}
+            value={user.email ? user.email : 'no email provided'}
           />
         </label>
         <input

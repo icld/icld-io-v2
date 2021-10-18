@@ -4,9 +4,8 @@ import { motion } from 'framer-motion';
 import { Dialog, Transition } from '@headlessui/react';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useCommentStore } from '../../lib/zustand/store';
-import { client } from '../../lib/sanity/client';
+import { client, getClient } from '../../lib/sanity/client';
 import { postQuery } from '../../lib/sanity/postQuery';
-import { commentsQuery } from '../../lib/sanity/commentsQuery';
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import CommentList from '../../components/Comments/CommentList';
@@ -17,28 +16,27 @@ import AddCommentForm from '../../components/AddCommentForm/AddCommentForm';
 import urlFor from '../../lib/sanity/urlFor';
 import groq from 'groq';
 
-let querySub = undefined;
-
 export default function Post({ post }) {
   const router = useRouter();
   const ref = useRef();
+  const [updatedComments, setUpdatedComments] = useState();
   const { commentFormOpen, setCommentFormOpen } = useCommentStore();
   const { title, body, mainImage, _id, comments } = post;
   const { user, error, isLoading } = useUser();
-  // console.log(_id);
-  const [updatedComments, setUpdatedComments] = useState(comments);
+  console.log(user);
 
   const refreshData = () => {
     router.replace(router.asPath);
   };
 
-  const onSubmitComment = () => {
-    setCommentFormOpen(false);
-    refreshData();
-  };
-
-  // console.log(post);
-  // console.log(user);
+  const params = { id: _id };
+  const query = `*[_type=='comment' && references($id)]{
+   comment,
+   email, 
+   name,
+   photoUrl,
+   publishedAt
+  }`;
 
   return (
     <motion.section
@@ -69,7 +67,7 @@ export default function Post({ post }) {
         </div>
       </div>
       <div className='relative flex flex-col w-full'>
-        <CommentList comments={comments} />
+        <CommentList commentss={comments} _id={_id} />
         {!commentFormOpen && (
           <button
             onClick={
