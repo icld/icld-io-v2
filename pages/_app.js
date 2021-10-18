@@ -12,8 +12,6 @@ function MyApp({ Component, pageProps }) {
   return getLayout(
     <UserProvider>
       <AnimatePresence exitBeforeEnter initial={false}>
-        <Avatar />
-
         <Component {...pageProps} />
       </AnimatePresence>
     </UserProvider>

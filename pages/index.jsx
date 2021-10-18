@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import Header from '../components/Header';
 import Image from 'next/image';
 import Footer from '../components/Footer';
+import Avatar from '../components/Auth/Avatar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import { useRouter } from 'next/router';
@@ -27,7 +28,9 @@ export default function Home() {
   return (
     <div className='flex flex-col items-center' ref={heroRef}>
       <Hero />
-
+      <div className='absolute z-50 top-2 left-2'>
+        <Avatar />
+      </div>
       {/* About Section */}
       <VisibilitySensor
         partialVisibility={true}
