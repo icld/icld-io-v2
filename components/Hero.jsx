@@ -20,7 +20,7 @@ function Hero({ aboutRef, heroRef }) {
             objectFit='cover'
             className='bg-black '
             priority={true}
-            quality={100}
+            quality={60}
           />
         </div>
 

@@ -34,8 +34,6 @@ export default function Portfolio({ posts }) {
     }
   }, [posts]);
 
-  // console.log(posts);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}

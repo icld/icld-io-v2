@@ -19,9 +19,6 @@ export default function PortfolioPost({
   github,
   image2,
 }) {
-  // console.log(images);
-  // console.log(image);
-
   const [imageUrl, setImageUrl] = useState('');
   const [mappedImages, setMappedImages] = useState([]);
   const [img, setImg] = useState(images);
@@ -79,7 +76,6 @@ export default function PortfolioPost({
                     target='_blank'
                     rel='noreferrer'
                   >
-                    {/* {console.log(github)} */}
                     Live Site
                   </a>
                 </li>
@@ -104,8 +100,6 @@ export default function PortfolioPost({
 
               <div className='relative grid w-full grid-cols-1 gap-6 mt-6'>
                 {images.map((item) => {
-                  console.log(item);
-
                   return (
                     <div className='relative w-full h-72' key={item._key}>
                       <Image
@@ -164,7 +158,6 @@ export default function PortfolioPost({
 
 export const getServerSideProps = async (pageContext) => {
   const pageSlug = pageContext.query.slug;
-  // console.log(pageSlug);
 
   if (!pageSlug) {
     return {
@@ -180,8 +173,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const result = await fetch(url).then((res) => res.json());
   const post = result.result[0];
-
-  // console.log(post);
 
   if (!post) {
     return {

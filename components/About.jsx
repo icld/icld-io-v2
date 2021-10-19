@@ -19,6 +19,8 @@ export default function Example() {
               layout='responsive'
               width={1184}
               height={1376}
+              quality={50}
+              placeholder='blur'
             />
           </div>
         </div>

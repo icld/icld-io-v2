@@ -9,8 +9,6 @@ import { commentsQuery } from '../../lib/sanity/commentsQuery';
 
 function CommentList({ _id, commentss }) {
   const [comments, setComments] = useState();
-  console.log(comments);
-  // setComments(commentss);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
@@ -20,12 +18,13 @@ function CommentList({ _id, commentss }) {
     const subscription = client
       .listen(commentsQuery, params)
       .subscribe((update) => {
-        console.log(update.result.comments);
-        setComments((items) =>
+        const comment = update.result;
+        console.log(comment);
+        setComments((item) =>
           [
-            ...items.filter((item) => item._id !== update.result._id),
-            update.result,
-          ].sort((a, b) => (a._publishedAt > b._publishedAt ? 1 : -1))
+            ...item.filter((item) => item._id !== update.result._id),
+            comment,
+          ].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
         );
       });
 
@@ -44,9 +43,14 @@ function CommentList({ _id, commentss }) {
       {/* Comments List */}
       <ul role='list' className='w-full -mb-8 divide-y divide-gray-200'>
         {comments &&
-          comments.map((comment) => (
-            <Comment comment={comment} key={comment._id} />
-          ))}
+          comments.map((item) => {
+            // console.log(item);
+            return (
+              <div key={item._id}>
+                <Comment comment={item} />
+              </div>
+            );
+          })}
       </ul>
     </div>
   );

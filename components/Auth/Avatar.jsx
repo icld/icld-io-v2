@@ -6,7 +6,6 @@ import UserModal from './UserModal';
 export default function Avatar() {
   const { user, error, isLoading } = useUser();
   const { modalOpen, setModalOpen } = useModalStore();
-  // console.log(user);
   const router = useRouter();
   return (
     <div

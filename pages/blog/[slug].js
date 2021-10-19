@@ -23,7 +23,6 @@ export default function Post({ post }) {
   const { commentFormOpen, setCommentFormOpen } = useCommentStore();
   const { title, body, mainImage, _id, comments } = post;
   const { user, error, isLoading } = useUser();
-  console.log(user);
 
   const refreshData = () => {
     router.replace(router.asPath);

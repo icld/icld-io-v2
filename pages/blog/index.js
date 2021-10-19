@@ -30,7 +30,6 @@ export default function Blog({ posts }) {
       setMappedPosts([]);
     }
   }, [posts]);
-  // console.log(posts);
   return (
     <motion.section
       initial={{ opacity: 0 }}
