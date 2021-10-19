@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Avatar from '../Auth/Avatar';
 
 import Comment from './Comment';
+import CommentField from './CommentField';
 import Divider from '../SmallComponents/Divider';
 import { client } from '../../lib/sanity/client';
 import { commentsQuery } from '../../lib/sanity/commentsQuery';
@@ -40,6 +41,8 @@ function CommentList({ _id, commentss }) {
         <Avatar />
       </div>
       <Divider />
+      <CommentField />
+
       {/* Comments List */}
       <ul role='list' className='w-full -mb-8 divide-y divide-gray-200'>
         {comments &&
