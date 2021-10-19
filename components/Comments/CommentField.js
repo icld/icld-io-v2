@@ -7,47 +7,68 @@ import Image from 'next/image';
 import { useUser } from '@auth0/nextjs-auth0';
 import { Input } from 'postcss';
 
-function CommentField() {
+function CommentField({ _id, length }) {
   const [inFocus, setInFocus] = useState(false);
+  const [formData, setFormData] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
   } = useForm();
 
   const { user, error, loading } = useUser();
 
-  async function onSubmit(values) {
-    console.log(values);
-    let config = {
-      method: 'post',
-      url: `${process.env.NEXT_PUBLIC_API_URL}/api/addComment`,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: values,
-    };
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    let response;
+    setFormData(data);
     try {
-      const response = await axios(config);
-      console.log(response);
-      if (response.status == 200) {
-        reset();
-        console.log('Success');
-      }
+      response = await fetch('/api/addComment', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        type: 'application/json',
+      });
+      setIsSubmitting(false);
+      setHasSubmitted(true);
+      reset();
     } catch (err) {
-      console.error(err);
+      setFormData(err);
     }
-  }
+  };
+
+  // if (isSubmitting) {
+  //   return <h3>Submitting comment…</h3>;
+  // }
+  // if (hasSubmitted) {
+  //   return (
+  //     <>
+  //       <h3>Thanks for your comment!</h3>
+  //       <ul>
+  //         <li>
+  //           Name: {formData.name} <br />
+  //           Email: {formData.email} <br />
+  //           Comment: {formData.comment}
+  //           {/* Url:{formData.photoUrl} */}
+  //         </li>
+  //       </ul>
+  //     </>
+  //   );
+  // }
 
   return (
     <div className='relative w-full'>
       <div className='relative pb-8'>
-        <span
-          className='absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200'
-          aria-hidden='true'
-        />
+        {length >= 1 && (
+          <span
+            className='absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200'
+            aria-hidden='true'
+          />
+        )}
         <div className='relative flex items-start w-full space-x-3'>
           <div className='relative'>
             <div className='flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-400 rounded-full ring-8 ring-white'>
@@ -70,8 +91,13 @@ function CommentField() {
               onSubmit={handleSubmit(onSubmit)}
               className='relative mt-2 text-sm text-gray-700'
             >
-              <label className='block mb-5 sr-only' htmlFor='name'>
-                <span className='text-gray-700'>Name</span>
+              <input
+                {...register('_id')}
+                type='hidden'
+                name='_id'
+                value={_id}
+              />
+              <label className='block mb-5 ' htmlFor='name'>
                 <input
                   type='hidden'
                   name='name'
@@ -82,13 +108,12 @@ function CommentField() {
                 />
               </label>
               <label className='block mb-5 sr-only' htmlFor='email'>
-                <span className='text-gray-700'>Email</span>
                 <input
                   name='email'
                   id='email'
                   type='hidden'
                   {...register('email', { required: true })}
-                  className='block w-full mt-1 form-input'
+                  className='block w-full mt-1 '
                   value={user?.email ? user.email : 'no email provided'}
                 />
               </label>
@@ -101,8 +126,9 @@ function CommentField() {
                 className='sr-only'
               />
               <label
-                onFocus={() => setInFocus(true)}
-                onBlur={() => setInFocus(false)}
+                htmlFor='message'
+                // onFocus={() => setInFocus(true)}
+                // onBlur={() => setInFocus(false)}
                 className='w-full '
               >
                 <textarea
@@ -110,7 +136,7 @@ function CommentField() {
                     required: true,
                     minLength: {
                       value: 10,
-                      message: 'Say a little please ',
+                      message: 'Say a little more, please ',
                     },
                   })}
                   name='comment'
@@ -118,15 +144,13 @@ function CommentField() {
                   className={`w-full h-12 p-2 mx-auto transition-all duration-200 border resize-none ${
                     inFocus && 'h-24'
                   } `}
-                  disabled={user ? false : true}
+                  // disabled={user ? false : true}
                   placeholder={
                     user ? 'Join the discussion' : 'Login to leave a comment'
                   }
                 />
-                <button hidden={user ? false : true} type='submit'>
-                  submit
-                </button>
               </label>
+              <button type='submit'>submit</button>
             </form>
           </div>
         </div>

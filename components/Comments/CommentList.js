@@ -15,7 +15,7 @@ function CommentList({ _id, commentss }) {
   useEffect(async () => {
     const params = { id: _id };
     setComments(await client.fetch(commentsQuery, params));
-
+    // setLength(comments?.length || 0);
     const subscription = client
       .listen(commentsQuery, params)
       .subscribe((update) => {
@@ -41,13 +41,12 @@ function CommentList({ _id, commentss }) {
         <Avatar />
       </div>
       <Divider />
-      <CommentField />
+      <CommentField _id={_id} length={comments?.length} />
 
       {/* Comments List */}
       <ul role='list' className='w-full -mb-8 divide-y divide-gray-200'>
         {comments &&
           comments.map((item) => {
-            // console.log(item);
             return (
               <div key={item._id}>
                 <Comment comment={item} />
