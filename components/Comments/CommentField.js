@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import moment from 'moment';
+import { FaRegThumbsUp } from 'react-icons/fa';
 
 import Image from 'next/image';
 import { useUser } from '@auth0/nextjs-auth0';
-import { Input } from 'postcss';
-
 function CommentField({ _id, length }) {
   const [inFocus, setInFocus] = useState(false);
   const [formData, setFormData] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const { user, error, loading } = useUser();
+  const buttonRef = useRef(null);
 
   const {
     register,
@@ -21,9 +22,8 @@ function CommentField({ _id, length }) {
     formState: { errors },
   } = useForm();
 
-  const { user, error, loading } = useUser();
-
   const onSubmit = async (data) => {
+    console.log(errors);
     setIsSubmitting(true);
     let response;
     setFormData(data);
@@ -33,9 +33,13 @@ function CommentField({ _id, length }) {
         body: JSON.stringify(data),
         type: 'application/json',
       });
+      if (response.status == 200) {
+        reset();
+        console.log('Success');
+      }
       setIsSubmitting(false);
       setHasSubmitted(true);
-      reset();
+      setInFocus(false);
     } catch (err) {
       setFormData(err);
     }
@@ -80,7 +84,6 @@ function CommentField({ _id, length }) {
               />
             </div>
           </div>
-
           <div className='relative w-full'>
             <div>
               <div className='text-sm'>
@@ -127,8 +130,8 @@ function CommentField({ _id, length }) {
               />
               <label
                 htmlFor='message'
-                // onFocus={() => setInFocus(true)}
-                // onBlur={() => setInFocus(false)}
+                onFocus={() => setInFocus(true)}
+                onBlur={() => setInFocus(false)}
                 className='w-full '
               >
                 <textarea
@@ -144,13 +147,28 @@ function CommentField({ _id, length }) {
                   className={`w-full h-12 p-2 mx-auto transition-all duration-200 border resize-none ${
                     inFocus && 'h-24'
                   } `}
-                  // disabled={user ? false : true}
+                  disabled={user ? false : true}
                   placeholder={
                     user ? 'Join the discussion' : 'Login to leave a comment'
                   }
                 />
+                {errors?.comment?.message ? (
+                  <span className='text-red-500 font-another'>
+                    {errors.comment.message}{' '}
+                  </span>
+                ) : (
+                  <button
+                    ref={buttonRef}
+                    className={` ${
+                      !user && 'hidden'
+                    }  flex flex-row items-center px-4 py-1 text-white bg-green-500 rounded hover:bg-green-700'
+                  type='submit'`}
+                  >
+                    submit
+                    <FaRegThumbsUp className='ml-2' />
+                  </button>
+                )}
               </label>
-              <button type='submit'>submit</button>
             </form>
           </div>
         </div>

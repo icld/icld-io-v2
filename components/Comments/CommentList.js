@@ -46,10 +46,10 @@ function CommentList({ _id, commentss }) {
       {/* Comments List */}
       <ul role='list' className='w-full -mb-8 divide-y divide-gray-200'>
         {comments &&
-          comments.map((item) => {
+          comments.map((item, i) => {
             return (
               <div key={item._id}>
-                <Comment comment={item} />
+                <Comment comment={item} length={comments?.length} index={i} />
               </div>
             );
           })}
