@@ -8,9 +8,7 @@ export default function Avatar() {
   const { modalOpen, setModalOpen } = useModalStore();
   const router = useRouter();
   return (
-    <div
-      className={` z-50 flex-shrink-0 block text-yellow-300 group font-another`}
-    >
+    <div className={` flex-shrink-0 block text-yellow-300 group font-another`}>
       {user ? (
         <button
           className='flex items-center'
@@ -19,7 +17,7 @@ export default function Avatar() {
           <div>
             {user && (
               <img
-                className='inline-block w-12 h-12 rounded-full'
+                className='inline-block w-8 h-8 rounded-full'
                 src={user?.picture}
                 alt=''
               />

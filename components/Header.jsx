@@ -26,12 +26,12 @@ const Header = (props) => {
   });
 
   return (
-    <section className='relative z-50 flex items-center justify-center w-full '>
+    <section className='relative flex items-center justify-center w-full '>
       <nav
         className={` 
         ${
           router.pathname == '/' && 'absolute'
-        } top-0 z-20 flex items-center justify-between w-11/12 h-20 m-auto `}
+        } top-0  flex items-center justify-between w-11/12 h-20 m-auto `}
       >
         <Title />
 
@@ -40,7 +40,7 @@ const Header = (props) => {
         <SlideNav />
         {/* Standard Nav */}
         <div
-          className={`items-center hidden w-2/5 text-lg ${
+          className={`items-center hidden w-2/5 text-lg z-50 ${
             router.pathname == '/' && 'text-yellow-300 text-shadow-lg '
           } md:flex-row md:justify-evenly md:flex md:text-3xl font-another `}
         >
@@ -71,8 +71,8 @@ const Header = (props) => {
                     y: '0%',
                     transition: {
                       type: 'bounce',
-                      delay: i,
-                      duration: 1,
+                      delay: +i / 2,
+                      duration: 0.5,
                     },
                   }}
                   whileTap={{
@@ -104,8 +104,7 @@ export default Header;
 
 export const navItems = [
   { name: 'portfolio', href: '/portfolio' },
-  { name: 'about', href: '/about' },
-  // { name: 'lx', href: 'https://www.icldesign.com' },
+  { name: 'about', href: '/#about' },
   { name: 'contact', href: '/contact' },
   { name: 'blog', href: '/blog' },
 ];
