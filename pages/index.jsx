@@ -22,11 +22,12 @@ export default function Home() {
   const { aboutIsVisible, setAboutIsVisible, aboutRefStore, setAboutRefStore } =
     useStore();
 
-  useEffect(() => {
-    return () => {
-      setAboutRefStore(aboutRef);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     setAboutRefStore(aboutRef);
+  //   };
+  // }, []);
+
   return (
     <div className='flex flex-col items-center' ref={heroRef}>
       <Hero />
