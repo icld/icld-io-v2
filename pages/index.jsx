@@ -1,16 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
-import Welcome from 'https://framer.com/m/Welcome-X3Or.js@gK1JOvAZJJfQDMiMtKYV';
 
-import Image from 'next/image';
 import Footer from '../components/Footer';
 import Avatar from '../components/Auth/Avatar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import { useRouter } from 'next/router';
 
-import { motion } from 'framer-motion';
 import VisibilitySensor from 'react-visibility-sensor';
 import { useStore } from '../lib/zustand/store';
 import BouncingDownArrow from '../components/SmallComponents/BouncingDownArrow';
@@ -21,12 +18,6 @@ export default function Home() {
   const heroRef = useRef(null);
   const { aboutIsVisible, setAboutIsVisible, aboutRefStore, setAboutRefStore } =
     useStore();
-
-  // useEffect(() => {
-  //   return () => {
-  //     setAboutRefStore(aboutRef);
-  //   };
-  // }, []);
 
   return (
     <div className='flex flex-col items-center' ref={heroRef}>

@@ -32,7 +32,7 @@ function CommentList({ _id, commentss }) {
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [_id]);
 
   return (
     <div className='flow-root w-4/5 mx-auto'>
