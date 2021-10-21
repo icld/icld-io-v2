@@ -6,12 +6,16 @@ import { ImMinus, ImPlus } from 'react-icons/im';
 import { ImArrowRight2 } from 'react-icons/im';
 import { GiDuration, GiForearm } from 'react-icons/gi';
 import { motion } from 'framer-motion';
+import { useStore } from '../lib/zustand/store';
+
 import router, { useRouter } from 'next/router';
 import Title from './Title';
 import DropDownNav from './DropDownNav';
 import SlideNav from './SlideNav';
 
 const Header = (props) => {
+  const { aboutRefStore } = useStore();
+
   const router = useRouter();
   const [activeMenu, setActiveMenu] = useState(false);
   const [chngCol, setChngCol] = useState(false);
@@ -25,6 +29,13 @@ const Header = (props) => {
     });
   });
 
+  const navItems = [
+    { name: 'portfolio', href: '/portfolio' },
+    { name: 'about', href: '/#about' },
+    { name: 'contact', href: '/contact' },
+    { name: 'blog', href: '/blog' },
+  ];
+
   return (
     <section className='relative flex items-center justify-center w-full '>
       <nav
@@ -37,7 +48,7 @@ const Header = (props) => {
 
         {/* Nav Drop Down Menu */}
         {/* <DropDownNav /> */}
-        <SlideNav />
+        <SlideNav navItems={navItems} />
         {/* Standard Nav */}
         <div
           className={`items-center hidden w-2/5 text-lg z-50 ${
@@ -101,10 +112,3 @@ const Header = (props) => {
   );
 };
 export default Header;
-
-export const navItems = [
-  { name: 'portfolio', href: '/portfolio' },
-  { name: 'about', href: '/#about' },
-  { name: 'contact', href: '/contact' },
-  { name: 'blog', href: '/blog' },
-];

@@ -50,13 +50,15 @@ function Title() {
                 initial={{ y: '50%' }}
                 animate={{ y: '0%' }}
                 transition={transitions}
+                whileHover={{ opacity: [1, 0.7, 1] }}
               >
-                Ian {'   '}
+                Ian
               </motion.div>{' '}
               <motion.div
                 initial={{ y: '500%' }}
                 animate={{ y: '0%' }}
                 transition={transitions}
+                whileHover={{ opacity: [1, 0.7, 1] }}
               >
                 Cameron
               </motion.div>{' '}
@@ -64,6 +66,7 @@ function Title() {
                 initial={{ y: '700%' }}
                 animate={{ y: '0%' }}
                 transition={transitions}
+                whileHover={{ opacity: [1, 0.7, 1] }}
               >
                 Lyles
               </motion.div>
