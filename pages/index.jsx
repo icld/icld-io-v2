@@ -19,7 +19,6 @@ export default function Home() {
   const router = useRouter();
   const aboutRef = useRef(null);
   const heroRef = useRef(null);
-  console.log(aboutRef);
   const { aboutIsVisible, setAboutIsVisible, aboutRefStore, setAboutRefStore } =
     useStore();
 
