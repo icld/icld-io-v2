@@ -4,11 +4,15 @@ import Header from '../../components/Header';
 import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '../../components/Footer';
-import { motion } from 'framer-motion';
+import urlFor from '../../lib/sanity/urlFor';
+import { motion, useCycle } from 'framer-motion';
 
 export default function Blog({ posts }) {
   const [mappedPosts, setMappedPosts] = useState([]);
+  const [current, pos] = useCycle('before', 'after');
+
   const router = useRouter();
   useEffect(() => {
     if (posts.length) {
@@ -30,6 +34,7 @@ export default function Blog({ posts }) {
       setMappedPosts([]);
     }
   }, [posts]);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -43,18 +48,38 @@ export default function Blog({ posts }) {
         </h1>
         <div className='flex flex-col items-center justify-center w-full p-2 py-8 lg:py-16 '>
           {mappedPosts.length ? (
-            mappedPosts.map((p, index) => (
-              <div
-                key={index}
-                className='flex flex-col w-full mb-12 cursor-pointer lg:w-3/5'
+            posts.map((p, index) => (
+              <motion.div
+                initial={{ x: `${index % 2 == 0 ? '-200%' : '200%'}` }}
+                animate={{
+                  x: '0%',
+                  transition: {
+                    type: 'spring',
+                    duration: 1,
+                    delay: `${index * 0.25}`,
+                  },
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { type: 'spring', duration: 1 },
+                }}
+                key={`post-${index}`}
+                className='relative flex flex-col w-full mb-12 overflow-hidden rounded-md cursor-pointer sm:w-4/5 lg:w-3/5'
                 onClick={() => router.push(`/blog/${p.slug}`)}
               >
                 <div className='mb-1 text-2xl font-another'>{p.title}</div>
-                <img alt='main image' className='' src={p.mainImage} />
+                <Image
+                  alt='main image'
+                  className=''
+                  src={urlFor(p.mainImage).url()}
+                  width={700}
+                  height={300}
+                  objectFit='cover'
+                />
                 <div className='flex flex-row justify-between text-sm md:text-xl font-another'>
                   <p> {p?.authName}</p> <div> {p?.publishedAt}</div>
                 </div>
-              </div>
+              </motion.div>
             ))
           ) : (
             <>No Posts Yet</>
