@@ -54,8 +54,8 @@ function MessageForm() {
   }
 
   return (
-    <div className='flex flex-col flex-grow'>
-      {messageOpen ? null : (
+    <div className='flex flex-col '>
+      {/* {messageOpen ? null : (
         <motion.button
           className='absolute self-center w-2/3 p-4 mt-4 text-lg text-white bg-yellow-400 rounded-sm font-another'
           onClick={(event) => {
@@ -66,11 +66,11 @@ function MessageForm() {
         >
           Send me a message!
         </motion.button>
-      )}
+      )} */}
       <motion.div
         // variants={messageOpen}
         // initial={{ scaleY: scaleY, display: 'hidden' }}
-        animate={{ scaleY: scaleY }}
+        // animate={{ scaleY: scaleY }}
         className='flex flex-col items-center justify-center w-full'
       >
         {messageSent ? (
@@ -107,7 +107,7 @@ function MessageForm() {
             />
             <button
               type='submit'
-              className='px-6 py-2 mt-2 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600'
+              className='px-6 py-2 mt-2 text-lg text-white bg-gray-800 border-0 rounded font-another focus:outline-none hover:bg-gray-600'
             >
               Send it off!
             </button>

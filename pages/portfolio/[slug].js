@@ -30,7 +30,7 @@ export default function PortfolioPost({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className='relative mx-auto max-w-7xl lg:px-8'
+      className='z-20 w-full h-screen px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
     >
       <div className='relative bg-white '>
         <div className='relative px-4 pt-12 pb-16 sm:pt-16 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-2 '>

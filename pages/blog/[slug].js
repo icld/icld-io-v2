@@ -43,29 +43,25 @@ export default function Post({ post }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className='z-20 w-full h-screen px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
+      className='z-20 w-full h-full px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
     >
-      <div className='relative flex flex-col items-center w-full m-auto'>
-        <h1 className='text-3xl prose font-another place-self-start'>
-          {title}
-        </h1>
-        {mainImage && (
-          <div className='relative w-full h-52'>
-            <Image
-              alt='blog'
-              className=''
-              src={`${urlFor(mainImage).width(800).height(800)}`}
-              layout='fill'
-              objectFit='cover'
-              quality={40}
-            />
-          </div>
-        )}
-        <div className='prose'>
-          <BlockContent blocks={body}></BlockContent>
+      <h1 className='text-3xl font-another '>{title}</h1>
+      {mainImage && (
+        <div className='relative w-full h-52'>
+          <Image
+            alt='blog'
+            className=''
+            src={`${urlFor(mainImage).width(800).height(800)}`}
+            layout='fill'
+            objectFit='cover'
+            quality={40}
+          />
         </div>
+      )}
+      <div className='prose'>
+        <BlockContent blocks={body}></BlockContent>
       </div>
-      <div className='relative flex flex-col w-full'>
+      <div className='w-full '>
         <CommentList commentss={comments} _id={_id} />
       </div>
     </motion.section>
