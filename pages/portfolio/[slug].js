@@ -59,7 +59,7 @@ export default function PortfolioPost({
                   <ul className='mb-4 font-bold'>
                     {technology.map((tech, i) => (
                       <li
-                        className='text-right text-yellow-500 lg:text-left'
+                        className='text-right text-yellow-300 lg:text-left'
                         key={i}
                       >
                         {tech}

@@ -10,7 +10,7 @@ export default function Layout({ title, description, children }) {
       </Head>
 
       <main
-        className='h-screen'
+        className=''
 
         // className='px-4 mx-auto max-w-7xl sm:px-6 lg:px-8'
       >

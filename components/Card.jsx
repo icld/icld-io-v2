@@ -12,7 +12,7 @@ export default function (props) {
       >
         {' '}
         <div className='flex flex-col items-center text-3xl'>
-          <h1 className='text-lg text-left text-yellow-500 font md:text-xl lg:text-2xl '>
+          <h1 className='text-lg text-left text-yellow-300 font md:text-xl lg:text-2xl '>
             {props.title}
           </h1>
           <div>{props.description} </div>

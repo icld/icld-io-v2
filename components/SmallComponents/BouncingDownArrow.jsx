@@ -52,7 +52,7 @@ function BouncingDownArrow({ up, down }) {
       whileTap='click'
       initial={{ scale: 1 }}
       animate={aboutIsVisible ? 'pointingUp' : 'bounce'}
-      className={`fixed   z-50 text-5xl mx-auto    bottom-14    ${
+      className={`fixed   z-20 text-5xl mx-auto    bottom-14    ${
         aboutIsVisible ? ' right-4' : ''
       } `}
     >

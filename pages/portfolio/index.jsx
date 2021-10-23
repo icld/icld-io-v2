@@ -4,8 +4,6 @@ import Footer from '../../components/Footer';
 import Card from '../../components/Card';
 import { motion } from 'framer-motion';
 
-// import styles from '../../styles/Portfolio.module.css';
-
 import { useState, useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import { useRouter } from 'next/router';
@@ -44,7 +42,7 @@ export default function Portfolio({ posts }) {
     >
       <div className=''>
         <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>
-          Here are some <span className='text-yellow-500'> projects </span> that
+          Here are some <span className='text-yellow-300'> projects </span> that
           I have been working on
         </h1>
         {/* relative px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 */}

@@ -42,7 +42,7 @@ function Title() {
                 backgroundImage: { opacity: 100 },
               }}
               transition={transitions}
-              className={` flex flex-col text-yellow-300 transition-colors sm:flex-row hover:text-yellow-100 ease-linear text-6xl md:text-7xl font-another   ${
+              className={` flex flex-col text-yellow-300 transition-colors sm:flex-row hover:text-yellow-200 ease-linear text-6xl md:text-7xl font-another   ${
                 router.pathname == '/' && 'text-shadow-lg'
               }`}
             >

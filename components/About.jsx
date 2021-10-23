@@ -28,7 +28,7 @@ export default function Example() {
           <h1 className='mb-2 text-3xl tracking-tight text-gray-800 font-another md:text-4xl lg:text-6xl '>
             Ian Cameron Lyles
           </h1>
-          <h3 className='mb-5 text-xl text-yellow-500 font-another'>
+          <h3 className='mb-5 text-xl text-yellow-300 font-another'>
             developer
           </h3>
           <p className='mb-3 text-sm text-gray-800 md:text-lg'>

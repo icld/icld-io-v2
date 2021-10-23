@@ -43,7 +43,7 @@ export default function Post({ post }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className='relative w-full px-4 py-8 mx-auto lg:py-16 max-w-7xl sm:px-6 lg:px-8'
+      className='z-20 w-full h-screen px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
     >
       <div className='relative flex flex-col items-center w-full m-auto'>
         <h1 className='text-3xl prose font-another place-self-start'>
