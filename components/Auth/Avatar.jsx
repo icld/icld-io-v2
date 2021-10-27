@@ -9,7 +9,9 @@ export default function Avatar() {
   const router = useRouter();
   return (
     <div
-      className={`  flex-shrink-0  text-yellow-300 group font-another bg-gray-600 px-4 py-2 flex items-center justify-center rounded-md bg-opacity-50    shadow-2xl  hover:bg-opacity-60  transition  duration-300 hover:scale-110 `}
+      className={`  flex-shrink-0  text-yellow-300 group font-another  px-4 py-2 flex items-center justify-center rounded-md bg-opacity-50       transition  duration-300 hover:scale-110 ${
+        router.pathname == '/' && 'bg-gray-600 hover:bg-opacity-60 shadow-2xl '
+      } `}
     >
       {user ? (
         <button
