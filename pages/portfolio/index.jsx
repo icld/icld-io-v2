@@ -65,7 +65,7 @@ export default function Portfolio({ posts }) {
   );
 }
 
-export const getServerSideProps = async (pageContext) => {
+export const getStaticProps = async (pageContext) => {
   const query = encodeURIComponent(
     '*[_type == "portfolio"] | order(order asc)'
   );
