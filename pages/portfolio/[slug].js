@@ -9,7 +9,6 @@ import Footer from '../../components/Footer';
 import { projectQuery } from '../../lib/sanity/projectQuery';
 import urlFor from '../../lib/sanity/urlFor';
 import { motion } from 'framer-motion';
-import groq from 'groq';
 
 export default function PortfolioPost({ project }) {
   const {
@@ -43,8 +42,10 @@ export default function PortfolioPost({ project }) {
               <Image
                 src={`${urlFor(mainImage2).width(600).height(1080)}`}
                 alt='Main image for page'
-                quality={50}
+                quality={40}
                 layout='fill'
+                priority={true}
+                placeholder='blur'
                 objectFit='cover'
               />
             )}
@@ -131,27 +132,45 @@ export default function PortfolioPost({ project }) {
         </div>
       </div>
     </motion.div>
+
+    //   <section>
+    //     <container>
+    //       <div className=''>
+    //         <h1>{title}</h1>
+
+    //         {imageUrl && (
+    //           <a href={url} target='_blank' rel='noreferrer'>
+    //             <img alt='blog' className='' src={imageUrl} />
+    //           </a>
+    //         )}
+    //         <div>
+    //           <ul>
+    //             {technology.map((t, i) => (
+    //               <li key={i}>{t}</li>
+    //             ))}
+    //           </ul>
+    //         </div>
+    //         <div className=''>
+    //           <BlockContent blocks={body}></BlockContent>{' '}
+    //         </div>
+    //         <div>
+    //           {mappedImages.map((image, i) => (
+    //             <img alt='portfolio' src={image.image} key={i} />
+    //           ))}
+    //         </div>
+    //       </div>
+    //     </container>
+    //   </section>
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   let slug;
   const project = await client.fetch(projectQuery, { slug: params.slug });
   return {
     props: {
       project,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const paths = await client.fetch(
-    groq`*[_type == "portfolio" && defined(slug.current)][].slug.current`
-  );
-
-  return {
-    paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
   };
 }
 
