@@ -9,6 +9,7 @@
     "basePath": "/studio"
   },
   "plugins": [
+    "order-documents",
     "@sanity/base",
     "@sanity/components",
     "@sanity/default-layout",
@@ -19,9 +20,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [

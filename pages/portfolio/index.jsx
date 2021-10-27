@@ -66,7 +66,9 @@ export default function Portfolio({ posts }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = encodeURIComponent('*[_type == "portfolio"]');
+  const query = encodeURIComponent(
+    '*[_type == "portfolio"] | order(order asc)'
+  );
   const url = `https://jwuejy9w.api.sanity.io/v1/data/query/production?query=${query}`;
   const result = await fetch(url).then((res) => res.json());
 
