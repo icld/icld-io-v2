@@ -69,7 +69,6 @@ export default function UserModal() {
                       width={50}
                       height={50}
                       objectFit='cover'
-                      className=' group-hover:opacity-0'
                     ></Image>
                   </div>
                 </div>
@@ -77,7 +76,7 @@ export default function UserModal() {
                 <div className='mt-1 text-center sm:mt-5 font-another'>
                   <Dialog.Title
                     as='h3'
-                    className='text-2xl font-medium leading-6 text-gray-900'
+                    className='text-2xl font-medium leading-6 text-gray-600 '
                   >
                     {messageSent ? 'Nice Work,' : 'Welcome'}
                   </Dialog.Title>
@@ -93,10 +92,10 @@ export default function UserModal() {
               <MessageForm />
 
               {/* LOGOUT BUTTON */}
-              <div className='flex justify-center mt-5 sm:mt-6 sm:gap-3 '>
+              <div className='flex justify-center mt-5 sm:mt-6 sm:gap-3'>
                 <button
                   type='button'
-                  className={`px-6 py-2 mt-2 text-lg text-white bg-gray-800 border-0 rounded font-another focus:outline-none hover:bg-gray-600 ${
+                  className={`fixed top-4 right-0  px-6  text-lg text-gray-800 bg-white border-0 rounded font-another focus:outline-none hover:scale-125 duration-100 ${
                     messageOpen && 'hidden'
                   }`}
                   onClick={async () => {
@@ -110,7 +109,7 @@ export default function UserModal() {
 
               <button
                 type='button'
-                className='fixed top-4 font-5xl '
+                className='fixed font-bold duration-100 top-4 font-5xl hover:scale-125 '
                 onClick={() => setModalOpen(false)}
                 ref={cancelButtonRef}
               >
