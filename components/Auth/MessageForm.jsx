@@ -55,18 +55,6 @@ function MessageForm() {
 
   return (
     <div className='flex flex-col '>
-      {/* {messageOpen ? null : (
-        <motion.button
-          className='absolute self-center w-2/3 p-4 mt-4 text-lg text-white bg-yellow-400 rounded-sm font-another'
-          onClick={(event) => {
-            event.preventDefault();
-            setScaleY(1);
-            setMessageOpen(true);
-          }}
-        >
-          Send me a message!
-        </motion.button>
-      )} */}
       <motion.div
         // variants={messageOpen}
         // initial={{ scaleY: scaleY, display: 'hidden' }}
@@ -74,7 +62,7 @@ function MessageForm() {
         className='flex flex-col items-center justify-center w-full'
       >
         {messageSent ? (
-          <h1 className='mt-4 text-center'>
+          <h1 className='mt-4 text-3xl text-center text-gray-800 font-another'>
             {' '}
             Your message was received. I will respond shortly!
           </h1>
@@ -99,15 +87,27 @@ function MessageForm() {
               value={user?.name}
             />
             <textarea
-              {...register('message')}
+              {...register('message', {
+                required: { value: true, message: 'Please enter a message' },
+                minLength: {
+                  value: 20,
+                  message: 'Please say a little more...',
+                },
+              })}
               id='message'
               name='message'
               placeholder='Say Hi! I will get right back to you!'
-              className='w-full h-32 px-3 py-1 mt-4 text-base leading-6 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none resize-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'
+              className='w-full h-32 px-3 py-1 mt-4 text-base leading-6 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none resize-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200'
             />
+            {errors.message && (
+              <span className='p-2 text-2xl text-red-500 font-another'>
+                {errors.message.message}
+              </span>
+            )}
             <button
+              {...register('submit')}
               type='submit'
-              className='px-6 py-2 mt-2 text-lg text-white bg-gray-800 border-0 rounded font-another focus:outline-none hover:bg-gray-600'
+              className='px-6 py-2 mt-2 text-lg text-white duration-200 bg-gray-600 border-0 rounded outline-none resize-none font-another focus:outline-none hover:bg-gray-500 hover:scale-110 focus:border-blue-500 focus:ring-2 focus:ring-blue-200'
             >
               Send it off!
             </button>

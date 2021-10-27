@@ -42,8 +42,10 @@ export default function PortfolioPost({ project }) {
               <Image
                 src={`${urlFor(mainImage2).width(600).height(1080)}`}
                 alt='Main image for page'
-                quality={50}
+                quality={40}
                 layout='fill'
+                priority={true}
+                placeholder='blur'
                 objectFit='cover'
               />
             )}
