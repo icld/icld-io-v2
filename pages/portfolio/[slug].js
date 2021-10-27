@@ -2,27 +2,30 @@ import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
 import Link from 'next/router';
+import { client } from '../../lib/sanity/client';
 import Image from 'next/image';
-import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import Footer from '../../components/Footer';
+import { projectQuery } from '../../lib/sanity/projectQuery';
 import urlFor from '../../lib/sanity/urlFor';
 import { motion } from 'framer-motion';
 
-export default function PortfolioPost({
-  title,
-  body,
-  image,
-  url,
-  technology,
-  images,
-  github,
-  image2,
-}) {
-  const [imageUrl, setImageUrl] = useState('');
-  const [mappedImages, setMappedImages] = useState([]);
-  const [img, setImg] = useState(images);
-  const [image2Url, setImage2Url] = useState('');
+export default function PortfolioPost({ project }) {
+  const {
+    title,
+    publishedAt,
+    description,
+    body,
+    slug,
+    technology,
+    mainImage,
+    mainImage2,
+    images,
+    url,
+    github,
+  } = project;
+
+  console.log(project);
 
   return (
     <motion.div
@@ -30,18 +33,20 @@ export default function PortfolioPost({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className='z-20 w-full h-screen px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
+      className='z-20 w-full h-full px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
     >
       <div className='relative bg-white '>
         <div className='relative px-4 pt-12 pb-16 sm:pt-16 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-2 '>
           <div className='relative hidden w-full lg:h-full lg:block '>
-            <Image
-              src={`${urlFor(image2).url()}`}
-              alt='Main image for page'
-              quality={10}
-              layout='fill'
-              objectFit='cover'
-            />
+            {mainImage2 && (
+              <Image
+                src={`${urlFor(mainImage2).width(600).height(1080)}`}
+                alt='Main image for page'
+                quality={50}
+                layout='fill'
+                objectFit='cover'
+              />
+            )}
           </div>
 
           <div className='lg:col-start-2 lg:pl-8'>
@@ -62,7 +67,7 @@ export default function PortfolioPost({
                         className='text-right text-yellow-300 lg:text-left'
                         key={i}
                       >
-                        {tech}
+                        {tech.title}
                       </li>
                     ))}
                   </ul>
@@ -99,25 +104,26 @@ export default function PortfolioPost({
               </div>
 
               <div className='relative grid w-full grid-cols-1 gap-6 mt-6'>
-                {images.map((item) => {
-                  return (
-                    <div className='relative w-full h-72' key={item._key}>
-                      <Image
-                        src={`${urlFor(item).width(500).height(400)}`}
-                        alt='Other image for page'
-                        // quality={30}
-                        layout='fill'
-                        objectFit='cover'
-                      />
-                    </div>
+                {images &&
+                  images.map((item) => {
+                    return (
+                      <div className='relative w-full h-72' key={item._key}>
+                        <Image
+                          src={`${urlFor(item).width(500).height(400)}`}
+                          alt='Other image for page'
+                          quality={70}
+                          layout='fill'
+                          objectFit='cover'
+                        />
+                      </div>
 
-                    // <img
-                    //   className='object-cover w-full h-full overflow-hidden'
-                    //   alt='portfolio'
-                    //   src={`${urlFor(item).url()}`}
-                    // />
-                  );
-                })}
+                      // <img
+                      //   className='object-cover w-full h-full overflow-hidden'
+                      //   alt='portfolio'
+                      //   src={`${urlFor(item).url()}`}
+                      // />
+                    );
+                  })}
               </div>
             </div>
           </div>
@@ -156,44 +162,15 @@ export default function PortfolioPost({
   );
 }
 
-export const getServerSideProps = async (pageContext) => {
-  const pageSlug = pageContext.query.slug;
-
-  if (!pageSlug) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const query = encodeURIComponent(
-    `*[ _type == "portfolio" && slug.current == "${pageSlug}" ]`
-  );
-
-  const url = `https://jwuejy9w.api.sanity.io/v1/data/query/production?query=${query}`;
-
-  const result = await fetch(url).then((res) => res.json());
-  const post = result.result[0];
-
-  if (!post) {
-    return {
-      notFound: true,
-    };
-  } else {
-    return {
-      props: {
-        body: post.body || null,
-        title: post.title || null,
-        image: post.mainImage || null,
-        image2: post.mainImage2 || null,
-        url: post.url || null,
-        technology: post.technology || null,
-        images: post.images || null,
-        url: post.url || null,
-        github: post.github || null,
-      },
-    };
-  }
-};
+export async function getServerSideProps({ params }) {
+  let slug;
+  const project = await client.fetch(projectQuery, { slug: params.slug });
+  return {
+    props: {
+      project,
+    },
+  };
+}
 
 PortfolioPost.getLayout = function getLayout(page) {
   return (

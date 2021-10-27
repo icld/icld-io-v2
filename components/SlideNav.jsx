@@ -4,6 +4,7 @@ import router, { useRouter } from 'next/router';
 import { useStore } from '../lib/zustand/store';
 import { motion, useCycle, useMotionValue, useTransform } from 'framer-motion';
 import { ImPlus } from 'react-icons/im';
+import { BsPlusCircleDotted } from 'react-icons/bs';
 import StaggeredLetters from './SmallComponents/StaggeredLetters';
 
 function SlideNav({ navItems }) {
@@ -52,16 +53,22 @@ function SlideNav({ navItems }) {
 
   return (
     <div className='z-30'>
-      <button
-        className={` flex  justify-center  items-center w-8 h-8 px-4 py-1 text-sm font-medium bg-yellow-300 rounded-md hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  md:hidden  ${
+      {/* Open Button */}
+      <motion.button
+        whileHover={{ rotate: 90 }}
+        whileTap={{ rotate: -90 }}
+        transition={{ duration: 0.2 }}
+        className={`flex  justify-center  items-center w-8 h-8 px-4 py-1 text-sm font-medium bg-yellow-300 rounded-md hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  md:hidden  ${
           isOpen && 'hidden'
         }`}
         onClick={() => {
           handleOpen();
         }}
       >
-        <ImPlus className='absolute text-black' />
-      </button>
+        <motion.span whileHover={{ rotate: 180 }} className='p-2'>
+          <ImPlus className='text-black ' />
+        </motion.span>
+      </motion.button>
       <div>
         {/* Close button */}
         <motion.button
@@ -71,7 +78,7 @@ function SlideNav({ navItems }) {
           onClick={() => handleOpen()}
           className={`fixed z-50 top-8 right-10  ${!isOpen && 'hidden'}`}
         >
-          X{' '}
+          X
         </motion.button>
 
         {/* Drag container */}

@@ -93,10 +93,10 @@ export default function UserModal() {
               <MessageForm />
 
               {/* LOGOUT BUTTON */}
-              {/* <div className='flex justify-center mt-5 sm:mt-6 sm:gap-3 '>
+              <div className='flex justify-center mt-5 sm:mt-6 sm:gap-3 '>
                 <button
                   type='button'
-                  className={`inline-flex justify-center w-1/3 px-4 py-2 text-base font-medium text-white capitalize bg-gray-600 border border-transparent rounded-sm shadow-sm font-another hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm ${
+                  className={`px-6 py-2 mt-2 text-lg text-white bg-gray-800 border-0 rounded font-another focus:outline-none hover:bg-gray-600 ${
                     messageOpen && 'hidden'
                   }`}
                   onClick={async () => {
@@ -106,7 +106,7 @@ export default function UserModal() {
                 >
                   Log {user?.nickname} out
                 </button>
-              </div> */}
+              </div>
 
               <button
                 type='button'

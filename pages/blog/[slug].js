@@ -45,24 +45,26 @@ export default function Post({ post }) {
       transition={{ duration: 0.5 }}
       className='z-20 w-full h-full px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
     >
-      <h1 className='text-3xl font-another '>{title}</h1>
-      {mainImage && (
-        <div className='relative w-full h-52'>
-          <Image
-            alt='blog'
-            className=''
-            src={`${urlFor(mainImage).width(800).height(800)}`}
-            layout='fill'
-            objectFit='cover'
-            quality={40}
-          />
+      <div className='flex flex-col items-center justify-center w-8/12 mx-auto'>
+        <h1 className='w-full text-3xl text-left font-another'>{title}</h1>
+        {mainImage && (
+          <div className='relative w-full h-52'>
+            <Image
+              alt='blog'
+              className=''
+              src={`${urlFor(mainImage).width(800).height(800)}`}
+              layout='fill'
+              objectFit='cover'
+              quality={40}
+            />
+          </div>
+        )}
+        <div className='prose'>
+          <BlockContent blocks={body}></BlockContent>
         </div>
-      )}
-      <div className='prose'>
-        <BlockContent blocks={body}></BlockContent>
-      </div>
-      <div className='w-full '>
-        <CommentList commentss={comments} _id={_id} />
+        <div className='w-full '>
+          <CommentList commentss={comments} _id={_id} />
+        </div>
       </div>
     </motion.section>
   );

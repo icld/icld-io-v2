@@ -29,11 +29,12 @@ export default function Example() {
             Ian Cameron Lyles
           </h1>
           <h3 className='mb-5 text-xl text-yellow-300 font-another'>
-            developer
+            software Engineer
           </h3>
           <p className='mb-3 text-sm text-gray-800 md:text-lg'>
-            Hello! I am a freelance developer living in Portland, Oregon. I have
-            a background in concert lighting design and production management.
+            Hello! I am a freelance software engineer living in Portland,
+            Oregon. I have a background in concert lighting design and
+            production management.
           </p>
           <p className='mb-3 text-sm text-gray-800 md:text-lg'>
             I have a young daughter and an old dog. We love to go mountain

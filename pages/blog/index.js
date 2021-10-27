@@ -22,7 +22,7 @@ export default function Blog({ posts }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className='z-20 w-full h-screen px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'>
+      <div className='z-20 w-full h-full px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'>
         <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>
           <span className='text-yellow-300'>icld.io</span> Very Interesting Blog
         </h1>

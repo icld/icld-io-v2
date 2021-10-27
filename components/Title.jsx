@@ -80,7 +80,7 @@ function Title() {
              ${router.pathname != '/' ? 'hidden' : 'block'}
              `}
             >
-              JavaScript Developer
+              Front-end Software Engineer
             </motion.div>
           </div>
           {/* <GiForearm className='text-3xl text-gray-50 text-shadow-lg' />
