@@ -20,7 +20,7 @@ function CommentList({ _id, commentss }) {
       .listen(commentsQuery, params)
       .subscribe((update) => {
         const comment = update.result;
-        console.log(comment);
+        // console.log(comment);
         setComments((item) =>
           [
             ...item.filter((item) => item._id !== update.result._id),

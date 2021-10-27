@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 
 //Use this to store additional state for the user before they visit the Identity Provider to login.
 const getLoginState = (req, loginOptions) => {
-  console.log(loginOptions.authorizationParams.scope); // access scope
+  // console.log(loginOptions.authorizationParams.scope)
+  // access scope
   return {}; // custom state value must be an object
 };
 

@@ -92,7 +92,7 @@ function SlideNav({ navItems }) {
           dragConstraints={{ left: 0, right: 50 }}
           dragElastic={1}
           onDragEnd={(event, info) => {
-            console.log(info.delta.x);
+            // console.log(info.delta.x);
             if (info.delta.x > threshold || info.point.x > 200) {
               handleOpen();
             }
