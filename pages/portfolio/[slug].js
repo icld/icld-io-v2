@@ -131,36 +131,17 @@ export default function PortfolioPost({ project }) {
         </div>
       </div>
     </motion.div>
-
-    //   <section>
-    //     <container>
-    //       <div className=''>
-    //         <h1>{title}</h1>
-
-    //         {imageUrl && (
-    //           <a href={url} target='_blank' rel='noreferrer'>
-    //             <img alt='blog' className='' src={imageUrl} />
-    //           </a>
-    //         )}
-    //         <div>
-    //           <ul>
-    //             {technology.map((t, i) => (
-    //               <li key={i}>{t}</li>
-    //             ))}
-    //           </ul>
-    //         </div>
-    //         <div className=''>
-    //           <BlockContent blocks={body}></BlockContent>{' '}
-    //         </div>
-    //         <div>
-    //           {mappedImages.map((image, i) => (
-    //             <img alt='portfolio' src={image.image} key={i} />
-    //           ))}
-    //         </div>
-    //       </div>
-    //     </container>
-    //   </section>
   );
+}
+
+export async function getStaticProps({ params }) {
+  let slug;
+  const project = await client.fetch(projectQuery, { slug: params.slug });
+  return {
+    props: {
+      project,
+    },
+  };
 }
 
 export async function getStaticPaths() {
@@ -171,16 +152,6 @@ export async function getStaticPaths() {
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
     fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  let slug;
-  const project = await client.fetch(projectQuery, { slug: params.slug });
-  return {
-    props: {
-      project,
-    },
   };
 }
 
