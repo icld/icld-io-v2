@@ -9,6 +9,7 @@ import Footer from '../../components/Footer';
 import { projectQuery } from '../../lib/sanity/projectQuery';
 import urlFor from '../../lib/sanity/urlFor';
 import { motion } from 'framer-motion';
+import groq from 'groq';
 
 export default function PortfolioPost({ project }) {
   const {
@@ -162,7 +163,18 @@ export default function PortfolioPost({ project }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  const paths = await client.fetch(
+    groq`*[_type == "portfolio" && defined(slug.current)][].slug.current`
+  );
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
   let slug;
   const project = await client.fetch(projectQuery, { slug: params.slug });
   return {
