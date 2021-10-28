@@ -99,7 +99,7 @@ export default function UserModal() {
                     messageOpen && 'hidden'
                   }`}
                   onClick={async () => {
-                    await router.push(`/api/auth/logout/${router.asPath}`);
+                    await router.push(`/api/auth/logout`);
                     setModalOpen(false);
                   }}
                 >
