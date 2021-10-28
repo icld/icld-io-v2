@@ -43,7 +43,7 @@ function Title() {
               }}
               transition={transitions}
               className={` flex flex-col text-yellow-300 transition-colors sm:flex-row hover:text-yellow-200 ease-linear text-6xl md:text-7xl font-another   ${
-                router.pathname == '/' && 'text-shadow-lg'
+                router.pathname == '/' && 'text-shadow-xl'
               }`}
             >
               <motion.div

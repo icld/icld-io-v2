@@ -52,7 +52,7 @@ const Header = (props) => {
         {/* Standard Nav */}
         <div
           className={`items-center hidden w-2/5 text-lg z-50 ${
-            router.pathname == '/' && 'text-yellow-300 text-shadow-lg '
+            router.pathname == '/' && 'text-yellow-300 text-shadow-xl '
           } md:flex-row md:justify-evenly md:flex md:text-3xl font-another `}
         >
           {navItems.map((item, i) =>

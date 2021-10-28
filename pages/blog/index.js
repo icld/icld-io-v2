@@ -23,10 +23,10 @@ export default function Blog({ posts }) {
       transition={{ duration: 0.5 }}
     >
       <div className='z-20 w-full h-full px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'>
-        <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another'>
+        <h1 className='text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl font-another'>
           <span className='text-yellow-300'>icld.io</span> Very Interesting Blog
         </h1>
-        <div className='w-11/12 p-2 py-8 m-auto lg:py-16 lg:w-3/5'>
+        <div className='w-11/12 max-w-3xl p-2 py-8 m-auto lg:py-16 lg:w-3/5 xl:w-2/3'>
           {posts.map((p, index) => (
             <motion.div
               initial={{ x: `${index % 2 == 0 ? '-30%' : '30%'}` }}
@@ -57,9 +57,10 @@ export default function Blog({ posts }) {
                 src={urlFor(p.mainImage).url()}
                 width={700}
                 height={300}
+                quality={30}
                 objectFit='cover'
               />
-              <div className='flex flex-row justify-between text-sm md:text-xl font-another'>
+              <div className='flex flex-row justify-between text-sm text-gray-600 md:text-xl font-another'>
                 <p> {p?.authName}</p> <div> {p?.publishedAt}</div>
               </div>
             </motion.div>
