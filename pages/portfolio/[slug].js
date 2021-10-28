@@ -45,7 +45,7 @@ export default function PortfolioPost({ project }) {
                 quality={40}
                 layout='fill'
                 priority={true}
-                placeholder='blur'
+                // placeholder='blur'
                 objectFit='cover'
               />
             )}
@@ -55,9 +55,6 @@ export default function PortfolioPost({ project }) {
             <div className='mx-auto text-base max-w-prose lg:max-w-lg lg:ml-auto lg:mr-0'>
               <div className='flex flex-row justify-between lg:block'>
                 <div className='flex flex-col'>
-                  {/* <h2 className='font-semibold leading-6 tracking-wide text-red-800 uppercase'>
-                    Site
-                  </h2> */}
                   <h3 className='mt-2 mb-4 text-4xl font-extrabold leading-8 tracking-tight text-gray-900 md:text-5xl font-another'>
                     {title}
                   </h3>

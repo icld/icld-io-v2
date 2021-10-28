@@ -93,20 +93,17 @@ export default function UserModal() {
 
               {/* LOGOUT BUTTON */}
               <div className='flex justify-center mt-5 sm:mt-6 sm:gap-3'>
-                <button
-                  type='button'
+                <a
+                  href={`/api/auth/logout?returnTo=${router.asPath}`}
                   className={`fixed top-4 right-0  px-6  text-lg text-gray-800 bg-white border-0 rounded font-another focus:outline-none hover:scale-125 duration-100 ${
                     messageOpen && 'hidden'
                   }`}
-                  onClick={async () => {
-                    await router.push(
-                      `/api/auth/logout?returnTo=${router.asPath}`
-                    );
+                  onClick={() => {
                     setModalOpen(false);
                   }}
                 >
                   Log {user?.nickname} out
-                </button>
+                </a>
               </div>
 
               <button
