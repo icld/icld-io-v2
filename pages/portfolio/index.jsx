@@ -41,8 +41,8 @@ export default function Portfolio({ posts }) {
       className='relative z-20 w-full h-full px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 max-w-7xl sm:px-6 lg:px-8'
     >
       <div className=''>
-        <h1 className='flex justify-center text-4xl leading-8 tracking-tight text-center text-gray-900 lg:text-6xl lg: font-another flex-nowrap'>
-          Here are some
+        <h1 className='flex flex-col justify-center text-4xl leading-8 tracking-tight text-right text-gray-900 sm:text-5xl lg:text-6xl lg: font-another md:flex-row '>
+          <div className=''>Here are some</div>
           <motion.div
             initial={{ scale: 4 }}
             animate={{ scale: 1 }}
@@ -51,7 +51,7 @@ export default function Portfolio({ posts }) {
           >
             projects
           </motion.div>
-          that I have been working on
+          {`I've been working on`}
         </h1>
         {/* relative px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 */}
         <div className='grid items-center justify-center gap-6 p-2 py-8 mx-auto lg:py-16 md:grid-cols-2 md:gap-8'>
