@@ -40,7 +40,7 @@ export default function Avatar() {
         </button>
       ) : (
         <a
-          href={user ? null : '/api/auth/login'}
+          href={user ? null : `/api/auth/login?returnTo=${router.asPath}`}
           onClick={() => user && setOpenModal(true)}
           className='text-lg'
         >
