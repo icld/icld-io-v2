@@ -59,7 +59,7 @@ export default function Post({ post }) {
             />
           </div>
         )}
-        <div className='prose'>
+        <div className='mt-8 prose'>
           <BlockContent blocks={body}></BlockContent>
         </div>
         <div className='w-full '>

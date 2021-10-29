@@ -1,7 +1,13 @@
+import { useState } from 'react';
 import moment from 'moment';
 import Image from 'next/image';
+import SubCommentField from './SubCommentField';
+import SubComment from './SubComment';
+function Comment({ comment, length, index, parentCommentId }) {
+  const [replyOpen, setReplyOpen] = useState(false);
+  const { subComment } = comment;
 
-function Comment({ comment, length, index }) {
+  // console.log(comment);
   return (
     <div>
       <li className='relative flex flex-row w-full'>
@@ -26,20 +32,41 @@ function Comment({ comment, length, index }) {
               </div>
             </div>
 
-            <div className='flex-1 min-w-0'>
+            <div className='flex-1 w-full min-w-0'>
               <div>
                 <div className='text-sm'>
                   <a href='#' className='font-medium text-gray-900'>
                     {comment?.name}
                   </a>
                 </div>
-                <p className='mt-0.5 text-sm text-gray-500'>
+                <p className='mt-0.5 text-xs text-gray-400'>
                   Commented {moment(comment.publishedAt).fromNow()}
                 </p>
               </div>
               <div className='mt-2 text-sm text-gray-700'>
                 <p>{comment.comment}</p>
               </div>
+              {replyOpen ? (
+                <div className='mt-4'>
+                  <SubCommentField _id={parentCommentId} />
+                </div>
+              ) : (
+                <button
+                  onClick={() => setReplyOpen(true)}
+                  className='py-2 mt-1 mb-3 text-xs text-blue-400 font-another hover:scale-110'
+                >
+                  reply
+                </button>
+              )}
+              {subComment?.length > 0 &&
+                subComment.map((c, i) => (
+                  <SubComment
+                    comment={c}
+                    key={i}
+                    length={subComment.length}
+                    index={i}
+                  />
+                ))}
             </div>
           </div>
         </div>

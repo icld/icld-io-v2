@@ -14,19 +14,19 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.15.1",
+    "@sanity/base": "^2.21.7",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.15.0",
-    "@sanity/dashboard": "^2.21.2",
-    "@sanity/default-layout": "^2.15.1",
-    "@sanity/default-login": "^2.15.0",
-    "@sanity/desk-tool": "^2.15.2",
-    "@sanity/vision": "^2.15.0",
+    "@sanity/core": "^2.21.7",
+    "@sanity/dashboard": "^2.21.7",
+    "@sanity/default-layout": "^2.21.7",
+    "@sanity/default-login": "^2.21.7",
+    "@sanity/desk-tool": "^2.21.7",
+    "@sanity/vision": "^2.21.7",
     "prop-types": "^15.7",
     "react": "^17.0",
     "react-dom": "^17.0",
     "sanity-plugin-order-documents": "^0.0.20",
-    "sanity-plugin-vercel-deploy": "^2.0.2"
-  },
-  "devDependencies": {}
+    "sanity-plugin-vercel-deploy": "^2.0.2",
+    "styled-components": "^5.3.3"
+  }
 }

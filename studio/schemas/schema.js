@@ -12,6 +12,7 @@ import author from './author';
 import portfolio from './portfolio';
 import tech from './tech';
 import comment from './comment';
+import subComment from './subComment';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -31,5 +32,6 @@ export default createSchema({
     portfolio,
     tech,
     comment,
+    subComment,
   ]),
 });

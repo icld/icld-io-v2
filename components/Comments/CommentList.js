@@ -49,7 +49,13 @@ function CommentList({ _id, commentss }) {
           comments.map((item, i) => {
             return (
               <div key={item._id}>
-                <Comment comment={item} length={comments?.length} index={i} />
+                <Comment
+                  comment={item}
+                  length={comments?.length}
+                  index={i}
+                  parentCommentId={item._id}
+                  _id={_id}
+                />
               </div>
             );
           })}

@@ -1,12 +1,11 @@
 import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import moment from 'moment';
 import { FaRegThumbsUp } from 'react-icons/fa';
 
 import Image from 'next/image';
 import { useUser } from '@auth0/nextjs-auth0';
-function CommentField({ _id, length }) {
+
+function SubCommentField({ _id, length }) {
   const [inFocus, setInFocus] = useState(false);
   const [formData, setFormData] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,19 +22,19 @@ function CommentField({ _id, length }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log(errors);
+    console.log(data);
     setIsSubmitting(true);
     let response;
     setFormData(data);
     try {
-      response = await fetch('/api/addComment', {
+      response = await fetch('/api/addSubComment', {
         method: 'POST',
         body: JSON.stringify(data),
         type: 'application/json',
       });
       if (response.status == 200) {
         reset();
-        // console.log('Success');
+        console.log('Success');
       }
       setIsSubmitting(false);
       setHasSubmitted(true);
@@ -116,15 +115,15 @@ function CommentField({ _id, length }) {
                 className='w-full '
               >
                 <textarea
-                  {...register('comment', {
+                  {...register('subComment', {
                     required: true,
                     minLength: {
                       value: 10,
                       message: 'Say a little more, please ',
                     },
                   })}
-                  name='comment'
-                  id='comment'
+                  name='subComment'
+                  id='subComment'
                   className={`w-full h-12 p-2 mx-auto transition-all duration-200 border resize-none ${
                     inFocus && 'h-24'
                   } `}
@@ -158,4 +157,4 @@ function CommentField({ _id, length }) {
   );
 }
 
-export default CommentField;
+export default SubCommentField;
