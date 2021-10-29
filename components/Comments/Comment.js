@@ -7,7 +7,6 @@ function Comment({ comment, length, index, parentCommentId }) {
   const [replyOpen, setReplyOpen] = useState(false);
   const { subComment } = comment;
 
-  // console.log(comment);
   return (
     <div>
       <li className='relative flex flex-row w-full'>

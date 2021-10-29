@@ -23,7 +23,6 @@ function CommentField({ _id, length }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log(errors);
     setIsSubmitting(true);
     let response;
     setFormData(data);
@@ -35,7 +34,6 @@ function CommentField({ _id, length }) {
       });
       if (response.status == 200) {
         reset();
-        // console.log('Success');
       }
       setIsSubmitting(false);
       setHasSubmitted(true);

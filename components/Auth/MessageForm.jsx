@@ -29,8 +29,6 @@ function MessageForm() {
   } = useForm();
 
   async function onSubmitForm(values) {
-    // console.log(values);
-
     let config = {
       method: 'post',
       url: `${process.env.NEXT_PUBLIC_API_URL}/api/sendgrid`,
@@ -42,11 +40,9 @@ function MessageForm() {
 
     try {
       const response = await axios(config);
-      // console.log(response);
       if (response.status == 200) {
         reset();
         setMessageSent(true);
-        // console.log('Success');
       }
     } catch (err) {
       console.error(err);

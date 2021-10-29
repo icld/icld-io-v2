@@ -2,8 +2,6 @@ import moment from 'moment';
 import Image from 'next/image';
 
 function SubComment({ comment, length, index }) {
-  console.log(comment);
-
   return (
     <div>
       <li className='relative flex flex-row w-full'>
