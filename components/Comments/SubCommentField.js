@@ -22,7 +22,6 @@ function SubCommentField({ _id, length }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     setIsSubmitting(true);
     let response;
     setFormData(data);
