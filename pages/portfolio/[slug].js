@@ -25,8 +25,6 @@ export default function PortfolioPost({ project }) {
     github,
   } = project;
 
-  // console.log(project);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
