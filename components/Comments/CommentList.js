@@ -8,17 +8,17 @@ import Divider from '../SmallComponents/Divider';
 import { client } from '../../lib/sanity/client';
 import { commentsQuery } from '../../lib/sanity/commentsQuery';
 
-function CommentList({ _id, commentss }) {
+function CommentList({ _id }) {
   const [comments, setComments] = useState();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const params = { id: _id };
     setComments(await client.fetch(commentsQuery, params));
-    // setLength(comments?.length || 0);
     const subscription = client
       .listen(commentsQuery, params)
       .subscribe((update) => {
+        // console.log(update.result);
         const comment = update.result;
         setComments((item) =>
           [

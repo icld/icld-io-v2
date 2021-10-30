@@ -1,11 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 import Image from 'next/image';
+import { client } from '../../lib/sanity/client';
 import SubCommentField from './SubCommentField';
 import SubComment from './SubComment';
+import { subCommentQuery } from '../../lib/sanity/subCommentQuery';
+
 function Comment({ comment, length, index, parentCommentId }) {
   const [replyOpen, setReplyOpen] = useState(false);
-  const { subComment } = comment;
+  const [comments, setComments] = useState();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    if (comment.subComment) {
+      const params = { id: parentCommentId };
+      setComments(await client.fetch(subCommentQuery, params));
+      const subscription = client
+        .listen(subCommentQuery, params)
+        .subscribe((update) => {
+          // console.log(update.result);
+          const comment = update.result;
+          setComments((item) =>
+            [
+              ...item.filter((item) => item._id !== update.result._id),
+              comment,
+            ].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+          );
+        });
+    }
+
+    return () => {
+      subscription.unsubscribe();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -47,7 +75,7 @@ function Comment({ comment, length, index, parentCommentId }) {
               </div>
               {replyOpen ? (
                 <div className='mt-4'>
-                  <SubCommentField _id={parentCommentId} />
+                  <SubCommentField _id={parentCommentId} comment={comment} />
                 </div>
               ) : (
                 <button
@@ -57,12 +85,12 @@ function Comment({ comment, length, index, parentCommentId }) {
                   reply
                 </button>
               )}
-              {subComment?.length > 0 &&
-                subComment.map((c, i) => (
+              {comments?.length > 0 &&
+                comments.map((c, i) => (
                   <SubComment
                     comment={c}
                     key={i}
-                    length={subComment.length}
+                    length={comment.subComment.length}
                     index={i}
                   />
                 ))}

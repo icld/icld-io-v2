@@ -24,19 +24,6 @@ export default function Post({ post }) {
   const { title, body, mainImage, _id, comments } = post;
   const { user, error, isLoading } = useUser();
 
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
-
-  const params = { id: _id };
-  const query = `*[_type=='comment' && references($id)]{
-   comment,
-   email, 
-   name,
-   photoUrl,
-   publishedAt
-  }`;
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -82,55 +69,6 @@ export async function getServerSideProps({ params }) {
     },
   };
 }
-
-// export async function getStaticPaths() {
-//   const paths = await client.fetch(
-//     groq`*[_type == "post" && defined(slug.current)][].slug.current`
-//   );
-
-//   return {
-//     paths: paths.map((slug) => ({ params: { slug } })),
-//     fallback: true,
-//   };
-// }
-
-// export const getServerSideProps = async (pageContext) => {
-//   const pageSlug = pageContext.query.slug;
-//   // console.log(pageSlug);
-
-//   if (!pageSlug) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   const query = encodeURIComponent(
-//     `*[ _type == "post" && slug.current == "${pageSlug}" ]`
-//   );
-
-//   const url = `https://jwuejy9w.api.sanity.io/v1/data/query/production?query=${query}`;
-
-//   const result = await fetch(url).then((res) => res.json());
-//   const post = result.result[0];
-
-//   //   console.log(post);
-
-//   if (!post) {
-//     return {
-//       notFound: true,
-//     };
-//   } else {
-//     return {
-//       props: {
-//         id: post._id,
-//         body: post.body,
-//         title: post.title,
-//         image: post.mainImage,
-//         author: post.author,
-//       },
-//     };
-//   }
-// };
 
 Post.getLayout = function getLayout(page) {
   return (
