@@ -12,7 +12,7 @@ function CommentField({ _id, length }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { user, error, loading } = useUser();
-  const buttonRef = useRef(null);
+  const submitButtonRef = useRef(null);
 
   const {
     register,
@@ -34,11 +34,13 @@ function CommentField({ _id, length }) {
       });
       if (response.status == 200) {
         reset();
+        console.log('success');
       }
       setIsSubmitting(false);
       setHasSubmitted(true);
       setInFocus(false);
     } catch (err) {
+      console.log(err);
       setFormData(err);
     }
   };
@@ -94,7 +96,7 @@ function CommentField({ _id, length }) {
                   name='email'
                   id='email'
                   type='hidden'
-                  {...register('email', { required: true })}
+                  {...register('email')}
                   className='block w-full mt-1 '
                   value={user?.email ? user.email : 'no email provided'}
                 />
@@ -108,7 +110,7 @@ function CommentField({ _id, length }) {
                 className='sr-only'
               />
               <label
-                htmlFor='message'
+                htmlFor='comment'
                 onFocus={() => setInFocus(true)}
                 onBlur={() => setInFocus(false)}
                 className='w-full '
@@ -137,11 +139,13 @@ function CommentField({ _id, length }) {
                   </span>
                 ) : (
                   <button
-                    ref={buttonRef}
+                    // {...register('submit')}
+                    ref={submitButtonRef}
                     className={` ${
                       !user && 'hidden'
                     }  flex flex-row items-center px-4 py-1 text-white bg-green-500 rounded hover:bg-green-700'
-                  type='submit'`}
+                  `}
+                    // type='submit'
                   >
                     submit
                     <FaRegThumbsUp className='ml-2' />

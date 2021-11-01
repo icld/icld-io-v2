@@ -131,9 +131,9 @@ function SubCommentField({ _id, length }) {
                     user ? 'Join the discussion' : 'Login to leave a comment'
                   }
                 />
-                {errors?.comment?.message ? (
+                {errors?.subComment?.message ? (
                   <span className='text-red-500 font-another'>
-                    {errors.comment.message}{' '}
+                    {errors.subComment.message}{' '}
                   </span>
                 ) : (
                   <button

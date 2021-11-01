@@ -74,8 +74,14 @@ function Comment({ comment, length, index, parentCommentId }) {
                 <p>{comment.comment}</p>
               </div>
               {replyOpen ? (
-                <div className='mt-4'>
+                <div className='flex flex-row items-center justify-center mt-4'>
                   <SubCommentField _id={parentCommentId} comment={comment} />
+                  <button
+                    onClick={() => setReplyOpen(false)}
+                    className='text-xs text-blue-300'
+                  >
+                    close
+                  </button>
                 </div>
               ) : (
                 <button

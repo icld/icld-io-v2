@@ -34,7 +34,7 @@ function CommentList({ _id }) {
   }, [_id]);
 
   return (
-    <div className='flow-root w-4/5 mx-auto'>
+    <div className='flow-root w-full mx-auto md:w-4/5 '>
       <div className='flex flex-row items-end justify-between p-2'>
         <h4 className='font-another '> {comments?.length} Comments</h4>
         <Avatar />

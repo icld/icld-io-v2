@@ -4,7 +4,7 @@ import Image from 'next/image';
 function SubComment({ comment, length, index }) {
   return (
     <div>
-      <li className='relative flex flex-row w-full'>
+      <div className='relative flex flex-row w-full'>
         <div className='relative pb-8'>
           {/* Remove the vertical line if comment is last in array */}
           {length === index + 1 ? null : (
@@ -41,7 +41,7 @@ function SubComment({ comment, length, index }) {
             </div>
           </div>
         </div>
-      </li>
+      </div>
     </div>
   );
 }
