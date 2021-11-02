@@ -23,9 +23,8 @@ export default function ({ slug, title, description, image }) {
           <h1 className='z-0 p-1 px-4 ml-2 text-lg text-left text-white translate-y-2 bg-blue-500 rounded-md shadow-md md:text-xl lg:text-2xl'>
             {title}
           </h1>
-          <div className='z-50 flex justify-center w-full h-full m-auto text-white '>
-            <div className='fixed w-full h-full m-auto text-4xl text-center transition-all duration-500 transform opacity-50 top-1/2 group-hover:opacity-100 group-hover:text-white text-shadow-lg group-hover:scale-105'>
-              {' '}
+          <div className='z-50 flex justify-center m-auto text-white '>
+            <div className='fixed px-8 text-xl sm:text-3xl text-center align-middle transition-all duration-500 delay-100 transform opacity-50 top-1/2 md:text-3xl group-hover:opacity-100 group-hover:text-white text-shadow-lg group-hover:scale-105'>
               {description}
             </div>
           </div>

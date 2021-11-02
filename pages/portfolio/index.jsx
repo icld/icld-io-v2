@@ -51,7 +51,7 @@ export default function Portfolio({ posts }) {
           >
             projects
           </motion.div>
-          {`I've been working on`}
+          {`I've developed`}
         </h1>
         {/* relative px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 */}
         <div className='grid items-center justify-center gap-6 p-2 py-8 mx-auto lg:py-16 md:grid-cols-2 md:gap-8'>
