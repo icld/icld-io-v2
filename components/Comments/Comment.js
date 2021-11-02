@@ -37,8 +37,8 @@ function Comment({ comment, length, index, parentCommentId }) {
 
   return (
     <div>
-      <li className='relative flex flex-row w-full'>
-        <div className='relative pb-8'>
+      <div className='relative flex flex-row w-full '>
+        <div className='relative pb-8 '>
           {/* Remove the vertical line if comment is last in array */}
           {length === index + 1 ? null : (
             <span
@@ -47,7 +47,7 @@ function Comment({ comment, length, index, parentCommentId }) {
             />
           )}
 
-          <div className='relative flex items-start space-x-3'>
+          <div className='relative flex items-start space-x-3 '>
             <div className='relative'>
               <div className='flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-400 rounded-full ring-8 ring-white'>
                 <Image
@@ -59,9 +59,9 @@ function Comment({ comment, length, index, parentCommentId }) {
               </div>
             </div>
 
-            <div className='flex-1 w-full min-w-0'>
-              <div>
-                <div className='text-sm'>
+            <div className='flex-1 w-full min-w-0 '>
+              <div className=''>
+                <div className='text-sm '>
                   <a href='#' className='font-medium text-gray-900'>
                     {comment?.name}
                   </a>
@@ -69,9 +69,9 @@ function Comment({ comment, length, index, parentCommentId }) {
                 <p className='mt-0.5 text-xs text-gray-400'>
                   Commented {moment(comment.publishedAt).fromNow()}
                 </p>
-              </div>
-              <div className='mt-2 text-sm text-gray-700'>
-                <p>{comment.comment}</p>
+                <div className='mt-2 text-sm text-gray-700'>
+                  <p>{comment.comment}</p>
+                </div>
               </div>
               {replyOpen ? (
                 <div className='flex flex-row items-center justify-center mt-4'>
@@ -103,7 +103,7 @@ function Comment({ comment, length, index, parentCommentId }) {
             </div>
           </div>
         </div>
-      </li>
+      </div>
     </div>
   );
 }

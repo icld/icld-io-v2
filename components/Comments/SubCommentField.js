@@ -38,6 +38,8 @@ function SubCommentField({ _id, length }) {
       setIsSubmitting(false);
       setHasSubmitted(true);
       setInFocus(false);
+
+      setTimeout(() => setHasSubmitted(false), 2000);
     } catch (err) {
       setFormData(err);
     }
@@ -140,10 +142,16 @@ function SubCommentField({ _id, length }) {
                     ref={buttonRef}
                     className={` ${
                       !user && 'hidden'
-                    }  flex flex-row items-center px-4 py-1 text-white bg-green-500 rounded hover:bg-green-700'
-                  type='submit'`}
+                    }  flex flex-row items-center px-4 py-1 text-white bg-blue-400 rounded hover:bg-blue-700'
+                  type='submit' ${isSubmitting && 'bg-green-400'} ${
+                      hasSubmitted && 'bg-yellow-600'
+                    }   `}
                   >
-                    submit
+                    {isSubmitting
+                      ? 'submitting!'
+                      : hasSubmitted
+                      ? 'Thanks!'
+                      : 'submit'}
                     <FaRegThumbsUp className='ml-2' />
                   </button>
                 )}

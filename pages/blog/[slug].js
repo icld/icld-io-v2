@@ -38,9 +38,9 @@ export default function Post({ post }) {
           <Image
             alt='blog'
             className='w-full'
-            src={`${urlFor(mainImage).width(700).height(350)}`}
+            src={`${urlFor(mainImage).width(700).height(300)}`}
             width={700}
-            height={350}
+            height={300}
             priority={true}
             objectFit='cover'
             quality={40}
