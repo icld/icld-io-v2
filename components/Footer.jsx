@@ -30,7 +30,7 @@ export default function Footer() {
             &copy; 2021{' '}
             <a
               href='https://icld.io'
-              className='text-gray-700 hover:text-red-600'
+              className='text-gray-700 hover:text-gray-500'
             >
               icld.io
             </a>

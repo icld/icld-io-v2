@@ -32,20 +32,19 @@ export default function Post({ post }) {
       transition={{ duration: 0.5 }}
       className='z-20 w-full h-full px-4 py-8 m-auto mt-24 mb-16 sm:mt-16 sm:px-6 lg:px-8'
     >
-      <div className='flex flex-col items-center justify-center w-10/12 mx-auto'>
-        <h1 className='w-full text-3xl text-left font-another'>{title}</h1>
+      <div className='flex flex-col items-center mx-auto text-left md:w-4/5'>
+        <h1 className='text-3xl font-another'>{title}</h1>
         {mainImage && (
-          <div className='relative w-full h-52'>
-            <Image
-              alt='blog'
-              className=''
-              src={`${urlFor(mainImage).width(800).height(800)}`}
-              layout='fill'
-              priority={true}
-              objectFit='cover'
-              quality={40}
-            />
-          </div>
+          <Image
+            alt='blog'
+            className='w-full'
+            src={`${urlFor(mainImage).width(700).height(350)}`}
+            width={700}
+            height={350}
+            priority={true}
+            objectFit='cover'
+            quality={40}
+          />
         )}
         <div className='mt-8 prose'>
           <BlockContent blocks={body}></BlockContent>
