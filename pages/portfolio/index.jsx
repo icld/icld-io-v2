@@ -62,6 +62,7 @@ export default function Portfolio({ posts }) {
                 title={p.title}
                 image={p.mainImage}
                 slug={p.slug.current}
+                description={p.description}
               />
             ))
           ) : (
