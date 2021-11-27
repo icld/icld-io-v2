@@ -40,7 +40,7 @@ export default function PortfolioPost({ project }) {
               <Image
                 src={`${urlFor(mainImage2).width(600).height(1080)}`}
                 alt='Main image for page'
-                quality={40}
+                quality={80}
                 layout='fill'
                 priority={true}
                 // placeholder='blur'
@@ -70,10 +70,10 @@ export default function PortfolioPost({ project }) {
                   </ul>
                 </div>
               </div>
-              <ul className=''>
+              <ul className='space-y-4'>
                 <li>
                   <a
-                    className='p-1 border hover:bg-gray-900 hover:text-white'
+                    className='px-3 py-1 transition-all duration-200 ease-linear border hover:bg-gray-900 hover:text-white '
                     href={url}
                     target='_blank'
                     rel='noreferrer'
@@ -83,7 +83,7 @@ export default function PortfolioPost({ project }) {
                 </li>
                 <li className='mt-1'>
                   <a
-                    className='p-1 border hover:bg-gray-900 hover:text-white'
+                    className='px-3 py-1 transition-all duration-200 ease-linear border hover:bg-gray-900 hover:text-white'
                     href={github}
                     target='_blank'
                     rel='noreferrer'
