@@ -1,13 +1,11 @@
-import { useState, useEffect } from 'react';
-import Layout from '../../components/Layout';
-import Header from '../../components/Header';
-import imageUrlBuilder from '@sanity/image-url';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import Image from 'next/image';
-import Footer from '../../components/Footer';
-import urlFor from '../../lib/sanity/urlFor';
 import { motion, useCycle } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import urlFor from '../../lib/sanity/urlFor';
 
 export default function Blog({ posts }) {
   const [mappedPosts, setMappedPosts] = useState([]);

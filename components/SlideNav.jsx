@@ -1,10 +1,8 @@
-import { Fragment, useState, useEffect, useRef } from 'react';
+import { motion, useCycle, useMotionValue } from 'framer-motion';
 import Link from 'next/link';
-import router, { useRouter } from 'next/router';
-import { useStore } from '../lib/zustand/store';
-import { motion, useCycle, useMotionValue, useTransform } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { ImPlus } from 'react-icons/im';
-import { BsPlusCircleDotted } from 'react-icons/bs';
 import StaggeredLetters from './SmallComponents/StaggeredLetters';
 
 function SlideNav({ navItems }) {

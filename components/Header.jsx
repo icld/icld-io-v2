@@ -33,7 +33,7 @@ const Header = (props) => {
     { name: 'portfolio', href: '/portfolio' },
     { name: 'about', href: '/#about' },
     { name: 'contact', href: '/contact' },
-    { name: 'blog', href: '/blog' },
+    // { name: 'blog', href: '/blog' },
   ];
 
   return (
